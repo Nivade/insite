@@ -22,14 +22,14 @@ namespace Insite
                     tmpUser = u;
                 }
             }
-            this.ID = id;
+            this.Id = id;
             this.IdRoom = idroom;
             this.User = tmpUser;
             this.Date = DateTime.ParseExact(date, TimeFormat, CultureInfo.InvariantCulture);
 
         }
 
-        public int ID { get; private set; }
+        public int Id { get; private set; }
         public int IdRoom { get; private set; }
         public User User { get; private set; }
         public DateTime Date { get; private set; }

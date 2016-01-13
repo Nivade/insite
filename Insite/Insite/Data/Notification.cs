@@ -14,7 +14,7 @@ namespace Insite
             Activity tmpActivity = null;
             foreach (Activity a in Database.Activities)
             {
-                if (a.ID == id)
+                if (a.Id == id)
                 {
                     tmpActivity = a;
                 }
