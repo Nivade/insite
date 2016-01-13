@@ -11,17 +11,21 @@ namespace Insite
 
         public Notification(int id, int idactivity, string type)
         {
+            Activity tmpActivity = null;
+            foreach (Activity a in Database.Activities)
+            {
+                if (a.ID == id)
+                {
+                    tmpActivity = a;
+                }
+            }
             this.Id = id;
-            this.IdActivity = idactivity;
-            this.type = type;
-          
+            this.Activity = tmpActivity;
+            this.Type = type;
         }
 
-        public int Id                // Property
-        { get; private set; }
-        public int IdActivity               // Property
-        { get; private set; }
-        public string type               // Property
-        { get; private set; }
+        public int Id { get; private set; }
+        public Activity Activity { get; private set; }
+        public string Type { get; private set; }
     }
 }

@@ -12,23 +12,27 @@ namespace Insite
     {
         public const string TimeFormat = "YYYY-MM-DD HH:MM:SS";
 
-        public Activity(int id, int idroom, int iduser,  string date)
+        public Activity(int id, int idroom, int iduser, string date)
         {
-            this.Id = id;
+            User tmpUser = null;
+            foreach (User u in Database.Users)
+            {
+                if (u.Id == id)
+                {
+                    tmpUser = u;
+                }
+            }
+            this.ID = id;
             this.IdRoom = idroom;
-            this.IdUser = iduser;
+            this.User = tmpUser;
             this.Date = DateTime.ParseExact(date, TimeFormat, CultureInfo.InvariantCulture);
 
         }
 
-        public int Id                // Property
-        { get; private set; }
-        public int IdRoom               // Property
-        { get; private set; }
-        public int IdUser               // Property
-        { get; private set; }
-        public DateTime Date               // Property
-        { get; private set; }
+        public int ID { get; private set; }
+        public int IdRoom { get; private set; }
+        public User User { get; private set; }
+        public DateTime Date { get; private set; }
     }
 
 }
