@@ -11,9 +11,19 @@ namespace Insite
     public class Room
     {
 
-        public Room()
+        public Room(int id, string risk, string mac)
         {
+            this.Id = id;
+            this.Risk = risk;
+            this.Mac = mac;
 
         }
+
+        public int Id                // Property
+        { get; private set; }
+        public string Risk               // Property
+        { get; private set; }
+        public string Mac               // Property
+        { get; private set; }
     }
 }
