@@ -15,7 +15,6 @@ namespace PT1._2
         private string _beginDT;
         private string _eindDT;
         private string _datum;
-        private static int 
 
 
         /// <summary>
@@ -34,31 +33,6 @@ namespace PT1._2
 
         }
 
-        /// <summary>
-        /// Haalt alle studenten op die in de database staan, gesorteerd op studentnummer.
-        /// </summary>
-        /// <returns>Een lijst van studenten.</returns>
-        /// 
-        public string ReadOnlyVorm                 // Property
-        {
-            get { return _vorm; }         // Getter
-        }
-        public int ReadOnlyX                // Property
-        {
-            get { return _x; }         // Getter
-        }
-        public int ReadOnlyY               // Property
-        {
-            get { return _y; }         // Getter
-        }
-        public int ReadOnlyWidth                // Property
-        {
-            get { return _width; }         // Getter
-        }
-        public int ReadOnlyHeight                // Property
-        {
-            get { return _height; }         // Getter
-        }
         public static List<Locatie> LoadAllFromDatabase(string naam, string beginD, string beginTijd, string EindD, string eindtijd)
         {
             int gebruikersID = OpvragenGebruikersID(naam);
