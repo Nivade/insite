@@ -10,19 +10,23 @@ namespace Insite
     {
         public User(int id, string name, int age, int iddevice)
         {
+            Device tmpDevice = null;
+            foreach (Device d in Database.Devices)
+            {
+                if (d.Id == id)
+                {
+                    tmpDevice = d;
+                }
+            }
             this.Id = id;
             this.Name = name;
             this.Age = age;
-            this.IdDevice = iddevice;
+            this.Device = tmpDevice;
         }
 
-        public int Id                // Property
-        { get; private set; }
-        public string Name               // Property
-        { get; private set; }
-        public int Age               // Property
-        { get; private set; }
-        public int IdDevice               // Property
-        { get; private set; }
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public int Age { get; private set; }
+        public Device Device { get; private set; }
     }
 }
