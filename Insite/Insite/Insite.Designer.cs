@@ -1,6 +1,6 @@
 ﻿namespace Insite
 {
-    partial class Form1
+    partial class Insite
     {
         /// <summary>
         /// Required designer variable.
