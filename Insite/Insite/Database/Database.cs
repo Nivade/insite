@@ -12,6 +12,8 @@ namespace Insite
     static class Database
     {
 
+        private const string FileLocation = "insite.sqlite3";
+
         /// <summary>
         /// String constants for table names.
         /// </summary>
@@ -25,17 +27,19 @@ namespace Insite
         }
 
 
-        private const string FileLocation = "insite.sqlite3";
-
-        // Variable waar de SQL-commandos tijdelijk in opgeslagen worden
-        private static SQLiteCommand command;
+        
 
 
         private static List<User> users;
-
+        private static List<Device> devices;
+        private static List<Notification> notifications;
+        private static List<Room> rooms;
         private static SQLiteConnection connection;
 
 
+        /// <summary>
+        /// Returns an opened connection.
+        /// </summary>
         private static SQLiteConnection Connection
         {
             get
@@ -52,6 +56,10 @@ namespace Insite
             
         }
 
+
+        /// <summary>
+        /// Returns a list of users.
+        /// </summary>
         public static List<User> Users
         {
             get
@@ -76,6 +84,27 @@ namespace Insite
             }
         }
 
+
+
+        public static List<Device> Devices
+        {
+            get
+            {
+                if (users == null)
+                {
+                    string sql = string.Format("SELECT * FROM {0}", Tables.Device);
+
+                    SQLiteDataReader rows = GetReader(sql);
+
+                    while (rows.Read())
+                    {
+                        devices?.Add(new Device(Convert.ToInt32(rows[0]), Convert.ToString(rows[1])));
+                    }
+                }
+
+                return devices;
+            }
+        }
 
 
         private static SQLiteDataReader GetReader(string query)
