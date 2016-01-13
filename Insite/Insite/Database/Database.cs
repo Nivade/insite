@@ -90,7 +90,7 @@ namespace Insite
         {
             get
             {
-                if (users == null)
+                if (devices == null)
                 {
                     string sql = string.Format("SELECT * FROM {0}", Tables.Device);
 
@@ -103,6 +103,29 @@ namespace Insite
                 }
 
                 return devices;
+            }
+        }
+
+
+        public static List<Notification> Notifications
+        {
+            get
+            {
+                if (notifications == null)
+                {
+                    string sql = string.Format("SELECT * FROM {0}", Tables.Notification);
+
+                    SQLiteDataReader rows = GetReader(sql);
+
+                    while (rows.Read())
+                    {
+                        notifications?.Add(new Notification(Convert.ToInt32(rows[0]), 
+                            Convert.ToInt32(rows[1]), 
+                            Convert.ToString(rows[2])));
+                    }
+                }
+
+                return notifications;
             }
         }
 
