@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
 
-namespace PT1._2
+namespace Insite
 {
     class Database
     {
