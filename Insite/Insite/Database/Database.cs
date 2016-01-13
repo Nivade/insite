@@ -8,12 +8,14 @@ using System.IO;
 
 namespace Insite
 {
-    class Database
+    static class Database
     {
         // De bestandsnaam voor de database
-        private static readonly string databaseFilename = "Database.sqlite";
+        private const string databaseFilename = "Database.sqlite";
+
         // Variabele voor het opzetten van de verbinding
         private static SQLiteConnection connection;
+
         // Variable waar de SQL-commandos tijdelijk in opgeslagen worden
         private static SQLiteCommand command;
 
@@ -25,6 +27,7 @@ namespace Insite
             {
                 // Zorg ervoor dat er een verbinding gemaakt kan worden
                 PrepareConnection();
+
                 // Stel het SQL commando in met de gegeven query
                 command = new SQLiteCommand(value, connection);
             }

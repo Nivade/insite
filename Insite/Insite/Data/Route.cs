@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Insite
+namespace Insite.Data
 {
-    public class User
+    public class Route : List<Activity>
     {
+
+        public Route()
+        {
+            
+        }
 
     }
 }
