@@ -26,14 +26,11 @@ namespace Insite
             public const string Room = "room";
         }
 
-
-        
-
-
         private static List<User> users;
         private static List<Device> devices;
         private static List<Notification> notifications;
         private static List<Room> rooms;
+        private static List<Activity> activities;
         private static SQLiteConnection connection;
 
 
@@ -98,7 +95,8 @@ namespace Insite
 
                     while (rows.Read())
                     {
-                        devices?.Add(new Device(Convert.ToInt32(rows[0]), Convert.ToString(rows[1])));
+                        devices?.Add(new Device(Convert.ToInt32(rows[0]), 
+                            Convert.ToString(rows[1])));
                     }
                 }
 
@@ -152,6 +150,29 @@ namespace Insite
             }
         }
 
+        public static List<Activity> Activities
+        {
+            get
+            {
+                if (activities == null)
+                {
+                    string sql = string.Format("SELECT * FROM {0}", Tables.Activity);
+
+                    SQLiteDataReader rows = GetReader(sql);
+
+                    while (rows.Read())
+                    {
+                        activities?.Add(new Activity(Convert.ToInt32(rows[0]),
+                            Convert.ToInt32(rows[1]),
+                            Convert.ToInt32(rows[2]),
+                            Convert.ToString(rows[3])));
+                    }
+                }
+
+                return activities;
+            }
+        }
+
 
         private static SQLiteDataReader GetReader(string query)
         {
@@ -169,16 +190,6 @@ namespace Insite
             if (Connection.State != System.Data.ConnectionState.Closed)
             {
                 Connection.Close();
-            }
-        }
-
-        private static void PrepareConnection()
-        {
-
-            // Zet een verbinding op met de database
-            if (Connection == null)
-            {
-                
             }
         }
 
