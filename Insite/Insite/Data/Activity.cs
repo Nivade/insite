@@ -21,8 +21,7 @@ namespace Insite
 
         }
 
-        public int Id                // Property
-        { get; private set; }
+        public int Id { get; private set; }
         public int IdRoom               // Property
         { get; private set; }
         public int IdUser               // Property
