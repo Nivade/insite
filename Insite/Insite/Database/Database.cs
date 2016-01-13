@@ -130,6 +130,29 @@ namespace Insite
         }
 
 
+        public static List<Room> Rooms
+        {
+            get
+            {
+                if (rooms == null)
+                {
+                    string sql = string.Format("SELECT * FROM {0}", Tables.Room);
+
+                    SQLiteDataReader rows = GetReader(sql);
+
+                    while (rows.Read())
+                    {
+                        rooms?.Add(new Room(Convert.ToInt32(rows[0]),
+                            Convert.ToString(rows[1]),
+                            Convert.ToString(rows[2])));
+                    }
+                }
+
+                return rooms;
+            }
+        }
+
+
         private static SQLiteDataReader GetReader(string query)
         {
             SQLiteCommand command = new SQLiteCommand(query, Connection);
