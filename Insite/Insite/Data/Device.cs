@@ -13,10 +13,7 @@ namespace Insite
             this.Id = id;
             this.Mac = mac;
         }
-
-        public int Id                // Property
-        { get; private set; }
-        public string Mac             // Property
-        { get; private set; }
+        public int Id { get; private set; }
+        public string Mac { get; private set; }
     }
 }
