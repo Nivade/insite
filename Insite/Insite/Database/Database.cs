@@ -220,14 +220,6 @@ namespace Insite
         }
 
 
-
-        private static void DatabaseChanged(object sender, UpdateEventArgs e)
-        {
-            
-        }
-
-
-
         /// <summary>
         /// Generates a datareader by executing the specified query on the specified connection.
         /// </summary>
