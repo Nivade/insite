@@ -65,7 +65,6 @@ namespace Insite
             {
                 if (users == null)
                 {
-
                     users = new List<User>();
 
                     string sql = string.Format("SELECT * FROM {0}", Tables.User);
@@ -94,6 +93,8 @@ namespace Insite
             {
                 if (devices == null)
                 {
+                    devices = new List<Device>();
+
                     string sql = string.Format("SELECT * FROM {0}", Tables.Device);
 
                     SQLiteDataReader rows = GetReader(sql);
@@ -116,6 +117,8 @@ namespace Insite
             {
                 if (notifications == null)
                 {
+                    notifications = new List<Notification>();
+
                     string sql = string.Format("SELECT * FROM {0}", Tables.Notification);
 
                     SQLiteDataReader rows = GetReader(sql);
@@ -139,6 +142,8 @@ namespace Insite
             {
                 if (rooms == null)
                 {
+                    rooms = new List<Room>();
+
                     string sql = string.Format("SELECT * FROM {0}", Tables.Room);
 
                     SQLiteDataReader rows = GetReader(sql);
@@ -161,6 +166,8 @@ namespace Insite
             {
                 if (activities == null)
                 {
+                    activities = new List<Activity>();
+
                     string sql = string.Format("SELECT * FROM {0}", Tables.Activity);
 
                     SQLiteDataReader rows = GetReader(sql);
