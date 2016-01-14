@@ -7,13 +7,17 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Globalization;
 using System.IO;
+using MySql.Data.MySqlClient;
+
 
 namespace Insite
 {
     static class Database
     {
 
-        private const string FileLocation = "../../Database/insite.sqlite3";
+        private const string FileLocation = "../../Database/insite.sqlite3"; 
+        
+        private const string ConnectionString = "Server=77.170.173.162;Uid=test;Pwd=passwordtest!;Database=ptdb;";
 
         /// <summary>
         /// String constants for table names.
@@ -67,6 +71,8 @@ namespace Insite
                 if (users == null)
                 {
                     users = new List<User>();
+
+                    
 
                     string sql = string.Format("SELECT * FROM {0}", Tables.User);
 
