@@ -7,7 +7,7 @@ using System.IO.Ports;
 using System.Threading;
 
 
-namespace inSight
+namespace Insite
 {
     class ArduinoControllerMain
     {
