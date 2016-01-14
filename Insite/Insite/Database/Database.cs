@@ -14,9 +14,9 @@ namespace Insite
 {
     static class Database
     {
-
-        private const string FileLocation = "../../Database/insite.sqlite3"; 
-        
+        /// <summary>
+        /// A gift to hackers.
+        /// </summary>
         private const string ConnectionString = "Server=77.170.173.162;Uid=test;Pwd=passwordtest!;Database=ptdb;";
 
         /// <summary>
@@ -37,30 +37,6 @@ namespace Insite
         private static List<Room> rooms;
         private static List<Activity> activities;
         private static SQLiteConnection connection;
-
-
-        
-        
-        /// <summary>
-        /// Returns an opened connection.
-        /// </summary>
-        private static SQLiteConnection Connection
-        {
-            get
-            {
-                if (connection == null)
-                {
-                    connection = new SQLiteConnection("Data Source=" + FileLocation + ";Version=3");
-                }
-
-                // Controleer of de verbinding niet al open is
-                if (connection.State != System.Data.ConnectionState.Open)
-                    connection.Open();
-
-                return connection;
-            }
-            
-        }
 
 
         /// <summary>
