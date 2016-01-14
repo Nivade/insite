@@ -200,6 +200,16 @@ namespace Insite
         }
 
 
+
+        private static MySqlDataReader GetMySqlDataReader(string query)
+        {
+            MySqlCommand cmd = new MySqlCommand(query);
+
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            return cmd.ExecuteReader();
+        }
+
         private static SQLiteDataReader GetReader(string query)
         {
             SQLiteCommand command = new SQLiteCommand(query, Connection);
