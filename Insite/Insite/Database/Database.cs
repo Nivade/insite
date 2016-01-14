@@ -228,21 +228,22 @@ namespace Insite
 
 
 
+        /// <summary>
+        /// Generates a datareader by executing the specified query on the specified connection.
+        /// </summary>
+        /// <param name="query"> The query to execute. </param>
+        /// <param name="con"> The connection to query. </param>
+        /// <returns></returns>
         private static MySqlDataReader GetMySqlDataReader(string query, MySqlConnection con)
         {
-            MySqlCommand cmd = new MySqlCommand(query, con);
-
-            cmd.CommandType = System.Data.CommandType.Text;
+            MySqlCommand cmd = new MySqlCommand(query, con)
+            {
+                CommandType = System.Data.CommandType.Text
+            };
 
             return cmd.ExecuteReader();
         }
 
-        private static SQLiteDataReader GetReader(string query)
-        {
-            SQLiteCommand command = new SQLiteCommand(query, Connection);
-
-            return command.ExecuteReader();
-        }
 
         /// <summary>
         /// Sluit de verbinding met de database
