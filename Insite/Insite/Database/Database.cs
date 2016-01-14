@@ -249,19 +249,6 @@ namespace Insite
             return cmd.ExecuteReader();
         }
 
-
-        /// <summary>
-        /// Sluit de verbinding met de database
-        /// </summary>
-        public static void CloseConnection()
-        {
-            // Controleer of de verbinding niet al gesloten is
-            if (Connection.State != System.Data.ConnectionState.Closed)
-            {
-                Connection.Close();
-            }
-        }
-
        
     }
 }
