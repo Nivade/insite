@@ -198,14 +198,20 @@ namespace Insite
 
                     string sql = string.Format("SELECT * FROM {0}", Tables.Activity);
 
-                    SQLiteDataReader rows = GetReader(sql);
-
-                    while (rows.Read())
+                    using (MySqlConnection con = new MySqlConnection(ConnectionString))
                     {
-                        activities?.Add(new Activity(Convert.ToInt32(rows[0]),
-                            Convert.ToInt32(rows[1]),
-                            Convert.ToInt32(rows[2]),
-                            Convert.ToString(rows[3])));
+                        con.Open();
+
+                        MySqlDataReader rows = GetMySqlDataReader(sql, con);
+
+                        while (rows.Read())
+                        {
+                            activities?.Add(new Activity(
+                                    Convert.ToInt32(rows[0]),
+                                    Convert.ToInt32(rows[1]),
+                                    Convert.ToInt32(rows[2]),
+                                    Convert.ToString(rows[3])));
+                        }
                     }
                 }
 
