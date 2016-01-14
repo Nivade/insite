@@ -14,14 +14,14 @@ namespace Tablet
     internal class Program
     {
 
-        private static ArduinoControllerMain controller = new ArduinoControllerMain();
+        private static readonly ArduinoControllerMain controller = new ArduinoControllerMain();
         private static string ssidtest;
         private static string Data;
         private static System.Threading.Timer scanner = new System.Threading.Timer(scanner_tick, null, 0, 10000);
-        private static System.Timers.Timer DataTimer = new System.Timers.Timer(5000);
-        private static bool quit = false;
 
-        private static WlanClient client = new WlanClient();
+        private static readonly System.Timers.Timer ScanInterval = new System.Timers.Timer(5000);
+        private static bool quit = false;
+        private static readonly WlanClient Client = new WlanClient();
         /*[STAThread]*/
 
 
@@ -41,11 +41,9 @@ namespace Tablet
                 }
             }
 
-            DataTimer.Elapsed += OnTimedEvent;
-            DataTimer.Start();
+            ScanInterval.Elapsed += OnTimedEvent;
+            ScanInterval.Start();
 
-
-            // Wlan = new WlanClient();
             while (!quit) {}
 
         }
@@ -54,7 +52,7 @@ namespace Tablet
 
         private static void scanner_tick(object state)
         {
-            foreach (WlanClient.WlanInterface interfacetoscan in client.Interfaces)
+            foreach (WlanClient.WlanInterface interfacetoscan in Client.Interfaces)
             {
                 interfacetoscan.Scan();
             }
@@ -64,7 +62,7 @@ namespace Tablet
 
         private static void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            WifiDetection(client);
+            WifiDetection(Client);
         }
 
 
