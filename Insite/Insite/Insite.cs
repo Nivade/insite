@@ -16,6 +16,20 @@ namespace Insite
         public Insite()
         {
             InitializeComponent();
+
+            LoadUsers();
         }
+
+
+
+        private void LoadUsers()
+        {
+            foreach (User u in Database.Users)
+            {
+                users.Items.Add(u.Name);
+            }
+        }
+
+
     }
 }

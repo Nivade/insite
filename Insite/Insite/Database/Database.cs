@@ -12,7 +12,7 @@ namespace Insite
     static class Database
     {
 
-        private const string FileLocation = "insite.sqlite3";
+        private const string FileLocation = "../../Database/insite.sqlite3";
 
         /// <summary>
         /// String constants for table names.
@@ -42,7 +42,9 @@ namespace Insite
             get
             {
                 if (connection == null)
+                {
                     connection = new SQLiteConnection("Data Source=" + FileLocation + ";Version=3");
+                }
 
                 // Controleer of de verbinding niet al open is
                 if (connection.State != System.Data.ConnectionState.Open)
@@ -63,6 +65,9 @@ namespace Insite
             {
                 if (users == null)
                 {
+
+                    users = new List<User>();
+
                     string sql = string.Format("SELECT * FROM {0}", Tables.User);
 
                     SQLiteDataReader rows = GetReader(sql);
@@ -171,6 +176,13 @@ namespace Insite
 
                 return activities;
             }
+        }
+
+
+
+        private static void DatabaseChanged(object sender, UpdateEventArgs e)
+        {
+            
         }
 
 
