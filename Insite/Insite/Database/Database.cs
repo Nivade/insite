@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SQLite;
 using System.Globalization;
 using System.IO;
 using MySql.Data.MySqlClient;
@@ -36,7 +35,6 @@ namespace Insite
         private static List<Notification> notifications;
         private static List<Room> rooms;
         private static List<Activity> activities;
-        private static SQLiteConnection connection;
 
 
         /// <summary>
