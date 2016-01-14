@@ -168,13 +168,19 @@ namespace Insite
 
                     string sql = string.Format("SELECT * FROM {0}", Tables.Room);
 
-                    SQLiteDataReader rows = GetReader(sql);
-
-                    while (rows.Read())
+                    using (MySqlConnection con = new MySqlConnection(ConnectionString))
                     {
-                        rooms?.Add(new Room(Convert.ToInt32(rows[0]),
-                            Convert.ToString(rows[1]),
-                            Convert.ToString(rows[2])));
+                        con.Open();
+
+                        MySqlDataReader rows = GetMySqlDataReader(sql, con);
+
+                        while (rows.Read())
+                        {
+                            rooms?.Add(new Room(
+                                    Convert.ToInt32(rows[0]),
+                                    Convert.ToString(rows[1]),
+                                    Convert.ToString(rows[2])));
+                        }
                     }
                 }
 
