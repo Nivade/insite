@@ -72,19 +72,22 @@ namespace Insite
                 {
                     users = new List<User>();
 
-                    
-
                     string sql = string.Format("SELECT * FROM {0}", Tables.User);
 
-                    SQLiteDataReader rows = GetReader(sql);
-
-                    while (rows.Read())
+                    using (MySqlConnection con = new MySqlConnection(ConnectionString))
                     {
-                        users?.Add( new User(
-                                    Convert.ToInt32(rows[0]), 
-                                    Convert.ToString(rows[1]), 
-                                    Convert.ToInt32(rows[2]), 
+                        con.Open();
+
+                        MySqlDataReader rows = GetMySqlDataReader(sql, con);
+
+                        while (rows.Read())
+                        {
+                            users?.Add(new User(
+                                    Convert.ToInt32(rows[0]),
+                                    Convert.ToString(rows[1]),
+                                    Convert.ToInt32(rows[2]),
                                     Convert.ToInt32(rows[3])));
+                        }
                     }
                 }
 
@@ -201,9 +204,9 @@ namespace Insite
 
 
 
-        private static MySqlDataReader GetMySqlDataReader(string query)
+        private static MySqlDataReader GetMySqlDataReader(string query, MySqlConnection con)
         {
-            MySqlCommand cmd = new MySqlCommand(query);
+            MySqlCommand cmd = new MySqlCommand(query, con);
 
             cmd.CommandType = System.Data.CommandType.Text;
 
