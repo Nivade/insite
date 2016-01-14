@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SQLite;
 using System.Globalization;
 using System.IO;
 using MySql.Data.MySqlClient;
@@ -14,8 +13,6 @@ namespace Insite
 {
     static class Database
     {
-
-        private const string FileLocation = "../../Database/insite.sqlite3"; 
         
         private const string ConnectionString = "Server=77.170.173.162;Uid=test;Pwd=passwordtest!;Database=ptdb;";
 
