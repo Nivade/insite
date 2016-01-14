@@ -39,6 +39,8 @@ namespace Insite
         private static SQLiteConnection connection;
 
 
+        
+        
         /// <summary>
         /// Returns an opened connection.
         /// </summary>
@@ -62,7 +64,7 @@ namespace Insite
 
 
         /// <summary>
-        /// Returns a list of users.
+        /// Fills and returns a list with Users.
         /// </summary>
         public static List<User> Users
         {
@@ -96,7 +98,9 @@ namespace Insite
         }
 
 
-
+        /// <summary>
+        /// Fills and returns a list with Devices.
+        /// </summary>
         public static List<Device> Devices
         {
             get
@@ -127,6 +131,10 @@ namespace Insite
         }
 
 
+
+        /// <summary>
+        /// Fills and returns a list with Notifications.
+        /// </summary>
         public static List<Notification> Notifications
         {
             get
@@ -158,6 +166,9 @@ namespace Insite
         }
 
 
+        /// <summary>
+        /// Fills and returns a list with rooms.
+        /// </summary>
         public static List<Room> Rooms
         {
             get
@@ -188,6 +199,11 @@ namespace Insite
             }
         }
 
+
+
+        /// <summary>
+        /// Fills and returns a list with activities.
+        /// </summary>
         public static List<Activity> Activities
         {
             get
