@@ -28,5 +28,19 @@ namespace Insite
         public string Name { get; private set; }
         public int Age { get; private set; }
         public Device Device { get; private set; }
+
+
+
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>
+        /// A string that represents the current object.
+        /// </returns>
+        public override string ToString()
+        {
+            return Name;
+        }
+
     }
 }
