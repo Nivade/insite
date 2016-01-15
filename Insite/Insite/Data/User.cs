@@ -13,7 +13,7 @@ namespace Insite
             Device tmpDevice = null;
             foreach (Device d in Database.Devices)
             {
-                if (d.Id == id) //if deviceid == userid?
+                if (d.Id == iddevice)
                 {
                     tmpDevice = d;
                 }
