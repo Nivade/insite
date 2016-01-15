@@ -194,7 +194,7 @@ namespace Insite
                                     Convert.ToInt32(rows[0]),
                                     Convert.ToInt32(rows[1]),
                                     Convert.ToInt32(rows[2]),
-                                    Convert.ToString(rows[3])));
+                                    DateTime.Parse(Convert.ToString(rows[3]))));
                         }
                     }
                 }
