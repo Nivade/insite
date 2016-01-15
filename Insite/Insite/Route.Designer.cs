@@ -29,70 +29,94 @@
         private void InitializeComponent()
         {
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.btnGetRoute = new System.Windows.Forms.Button();
             this.lbInformation = new System.Windows.Forms.ListBox();
             this.lblNaam = new System.Windows.Forms.Label();
             this.cbUsers = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // dtpDate
             // 
-            this.dtpDate.Location = new System.Drawing.Point(66, 47);
-            this.dtpDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpDate.Location = new System.Drawing.Point(13, 95);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(183, 20);
             this.dtpDate.TabIndex = 17;
             this.dtpDate.ValueChanged += new System.EventHandler(this.DateSelected);
             // 
-            // btnGetRoute
-            // 
-            this.btnGetRoute.Location = new System.Drawing.Point(106, 71);
-            this.btnGetRoute.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnGetRoute.Name = "btnGetRoute";
-            this.btnGetRoute.Size = new System.Drawing.Size(143, 21);
-            this.btnGetRoute.TabIndex = 16;
-            this.btnGetRoute.Text = "Get the Route";
-            this.btnGetRoute.UseVisualStyleBackColor = true;
-            // 
             // lbInformation
             // 
             this.lbInformation.FormattingEnabled = true;
-            this.lbInformation.Location = new System.Drawing.Point(266, 21);
-            this.lbInformation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbInformation.Location = new System.Drawing.Point(234, 37);
+            this.lbInformation.Margin = new System.Windows.Forms.Padding(2);
             this.lbInformation.Name = "lbInformation";
-            this.lbInformation.Size = new System.Drawing.Size(251, 303);
+            this.lbInformation.Size = new System.Drawing.Size(286, 498);
             this.lbInformation.TabIndex = 15;
             // 
             // lblNaam
             // 
             this.lblNaam.AutoSize = true;
-            this.lblNaam.Location = new System.Drawing.Point(20, 24);
+            this.lblNaam.Location = new System.Drawing.Point(11, 21);
             this.lblNaam.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNaam.Name = "lblNaam";
-            this.lblNaam.Size = new System.Drawing.Size(41, 13);
+            this.lblNaam.Size = new System.Drawing.Size(86, 13);
             this.lblNaam.TabIndex = 12;
-            this.lblNaam.Text = "Name: ";
+            this.lblNaam.Text = "Select a resident";
             // 
             // cbUsers
             // 
             this.cbUsers.FormattingEnabled = true;
-            this.cbUsers.Location = new System.Drawing.Point(66, 21);
+            this.cbUsers.Location = new System.Drawing.Point(12, 37);
             this.cbUsers.Name = "cbUsers";
             this.cbUsers.Size = new System.Drawing.Size(183, 21);
             this.cbUsers.TabIndex = 18;
             this.cbUsers.SelectedIndexChanged += new System.EventHandler(this.UserSelected);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(231, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(183, 13);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "All resident activity for the given date.";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 80);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Select a date";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 133);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Today";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Route
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(531, 335);
+            this.ClientSize = new System.Drawing.Size(531, 552);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cbUsers);
             this.Controls.Add(this.dtpDate);
-            this.Controls.Add(this.btnGetRoute);
             this.Controls.Add(this.lbInformation);
             this.Controls.Add(this.lblNaam);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Route";
             this.Text = "Route";
             this.ResumeLayout(false);
@@ -102,9 +126,11 @@
 
         #endregion
         private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.Button btnGetRoute;
         private System.Windows.Forms.ListBox lbInformation;
         private System.Windows.Forms.Label lblNaam;
         private System.Windows.Forms.ComboBox cbUsers;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -160,7 +160,8 @@ namespace Insite
                             rooms?.Add(new Room(
                                     Convert.ToInt32(rows[0]),
                                     Convert.ToString(rows[1]),
-                                    Convert.ToString(rows[2])));
+                                    Convert.ToString(rows[2]),
+                                    Convert.ToString(rows[3])));
                         }
                     }
                 }
@@ -231,9 +232,12 @@ namespace Insite
                 int roomId = 0;
                 int userId = 0;
                 con.Open();
+
                 string query = "SELECT user.id FROM user, device WHERE user.id_device = device.id AND device.mac ='" + ownMac + "'";
+
                 MySqlDataReader reader = GetMySqlDataReader(query, con);
 
+                
 
                 while (reader.Read())
                 {
@@ -241,21 +245,21 @@ namespace Insite
                 }
                 reader.Close();
 
-                command.CommandText = "SELECT room.id FROM room WHERE room.mac ='" + RoomMac + "'";
-                reader = command.ExecuteReader();
+                query = "SELECT room.id FROM room WHERE room.mac ='" + RoomMac + "'";
+                reader = GetMySqlDataReader(query, con);
                 while (reader.Read())
                 {
                     roomId = Convert.ToInt32(reader["id"]);
                 }
-
+                reader.Close();
                 Console.WriteLine("userid: " + userId + " roomid: " + roomId);
 
-                MySqlCommand command = new MySqlCommand();
+                
                 try
                 {
-                    
+                    MySqlCommand command = new MySqlCommand();
                     command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + DateTime.Now + "')";
-                    reader.Close();
+                    command.Connection = con;
                     command.ExecuteNonQuery();
                 }
                 catch (MySqlException)

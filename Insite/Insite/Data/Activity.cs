@@ -52,7 +52,7 @@ namespace Insite
         /// </returns>
         public override string ToString()
         {
-            return Room.Mac + " ---- " + Date.ToString();
+            return Room.Name + " ---- " + Date.ToString();
         }
 
     }

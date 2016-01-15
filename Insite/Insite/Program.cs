@@ -16,7 +16,7 @@ namespace Insite
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Insite());
+            Application.Run(new Route());
         }
     }
 }
