@@ -247,7 +247,7 @@ namespace Insite
                 try
                 {
                     command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + DateTime.Now + "')";
-                   
+                    //command.ExecuteNonQuery();
                 }
                 catch (MySqlException)
                 {

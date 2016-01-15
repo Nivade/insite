@@ -29,6 +29,8 @@ namespace Insite
         private static void Main(string[] args)
         {
             controller.SendData("RESET");
+            string ownMac = client.Interfaces[0].NetworkInterface.GetPhysicalAddress().ToString();
+            Console.WriteLine("Tablets MAC Address = " + ownMac);
             while (controller.ReceivedData() != "GET_ID") ;
             Console.WriteLine("Voer een netwerknaam in (e.g. fontysWPA): ");
             ssidtest = Console.ReadLine();
@@ -42,17 +44,12 @@ namespace Insite
 
             DataTimer.Elapsed += OnTimedEvent;
             DataTimer.Start();
-            string ownMac = client.Interfaces[0].NetworkInterface.GetPhysicalAddress().ToString();
-            int x = 1;
-            for (int i = 0; i < x; i++)
-            {
-                controller.SendData("id:" + ownMac);
-                Console.WriteLine("Tablets MAC Address = " + ownMac);
-            }
-         
 
-            // Wlan = new WlanClient();
-            while (!quit) {}
+            controller.SendData("id:" + ownMac);
+
+
+
+            while (!quit) { }
         }
 
 
@@ -74,7 +71,7 @@ namespace Insite
             {
                 received = controller.ReceivedData();
             }
-            
+
             if (received != null)
             {
                 Console.WriteLine(received);
@@ -82,16 +79,17 @@ namespace Insite
                 {
                     if (received.StartsWith("NETWORK:"))
                     {
+                        Console.WriteLine(received);
                         received = received.Remove(0, 8);
                         string[] addressen = received.Split(';');
                         string ownMac = addressen[0];
                         string RoomMac = addressen[1];
+                        Console.WriteLine("ROOMMAC: " + RoomMac + " " + RoomMac.Length.ToString());
                         Database.AddDataToDB(ownMac, RoomMac);
                     }
-
                 }
             }
-           
+
         }
 
 
@@ -106,8 +104,6 @@ namespace Insite
                 foreach (Wlan.WlanBssEntry network in wlanBssEntries)
                 {
                     int rss = network.rssi;
-
-                    //    MessageBox.Show(rss.ToString());
                     byte[] macAddr = network.dot11Bssid;
                     string tMac = "";
 
@@ -121,25 +117,15 @@ namespace Insite
 
                     if (ssidtest == SSID)
                     {
-                        // Console.WriteLine("Found network with SSID {0}.", SSID);
 
                         Data += network.linkQuality;
                         Data += ";";
-
-                        //Console.WriteLine("#{0}; ", network.linkQuality);
-                        //Console.WriteLine("{0}% ", tMac);
                         Data += tMac;
                         Data += ";";
                     }
-
-                    //Console.WriteLine("BSS Type: {0}.", network.dot11BssType);
-                    //System.Windows.Forms.Clipboard.SetText(SSID);
-                    //Console.WriteLine("RSSID:{0}", rss.ToString());
                 }
-
-                //Console.ReadLine();
             }
-            Console.WriteLine(Data);
+            //Console.WriteLine(Data);
             controller.SendData(Data);
             Data = null;
         }
