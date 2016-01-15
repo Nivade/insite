@@ -15,6 +15,32 @@ namespace Insite
         public Route()
         {
             InitializeComponent();
+
+            FillComboBox();
+        }
+
+
+
+        public void FillComboBox()
+        {
+            foreach (User u in Database.Users)
+            {
+                cbUsers.Items.Add(u);
+            }
+        }
+
+        private void UserSelected(object sender, EventArgs e)
+        {
+            lbInformation.Items.Clear();
+
+            List<Activity> userActivities = new List<Activity>();
+            foreach (Activity a in Database.Activities)
+            {
+                if (cbUsers.SelectedItem == a.User)
+                {
+                    lbInformation.Items.Add(a);
+                }
+            }
         }
     }
 }
