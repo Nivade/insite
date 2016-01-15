@@ -17,7 +17,6 @@ namespace Insite
 
         void datagetter_tick(object state)
         {
-
             try
             {
                 if (serialPort.BytesToRead > 0)
@@ -66,7 +65,6 @@ namespace Insite
         {
             if (buffer != null)
             {
-
                 if (buffer.StartsWith("#") && buffer.IndexOf("%") > 0)
                 {
 
@@ -80,7 +78,6 @@ namespace Insite
                 if (!buffer.StartsWith("#") && buffer != "")
                 {
                     buffer = buffer.Remove(0, 1);
-
                 }
             }
             return null;

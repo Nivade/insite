@@ -28,6 +28,7 @@ namespace Insite
 
         private static void Main(string[] args)
         {
+            controller.SendData("RESET");
             while (controller.ReceivedData() != "GET_ID") ;
             Console.WriteLine("Voer een netwerknaam in (e.g. fontysWPA): ");
             ssidtest = Console.ReadLine();
@@ -46,7 +47,7 @@ namespace Insite
             for (int i = 0; i < x; i++)
             {
                 controller.SendData("id:" + ownMac);
-                Console.WriteLine("Tabblets MAC Address = " + ownMac);
+                Console.WriteLine("Tablets MAC Address = " + ownMac);
             }
          
 
@@ -69,10 +70,14 @@ namespace Insite
         private static void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             WifiDetection(client);
-            received = controller.ReceivedData();
-            Console.WriteLine(received);
+            while (received == null)
+            {
+                received = controller.ReceivedData();
+            }
+            
             if (received != null)
             {
+                Console.WriteLine(received);
                 if (received.Contains(";"))
                 {
                     if (received.StartsWith("NETWORK:"))
