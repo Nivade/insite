@@ -7,7 +7,7 @@ using Insite.Data;
 
 namespace Insite
 {
-    class Notification
+    public class Notification
     {
 
         public Notification(int id, int idactivity, string type)

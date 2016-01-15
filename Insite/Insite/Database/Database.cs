@@ -5,7 +5,7 @@ using MySql.Data.MySqlClient;
 
 namespace Insite
 {
-    static class Database
+    public static class Database
     {
         /// <summary>
         /// A gift to hackers.
@@ -220,7 +220,21 @@ namespace Insite
             return cmd.ExecuteReader();
         }
 
-       
+
+        static public void AddDataToDB(string ownMac, string RoomMac)
+        {
+            using (MySqlConnection con = new MySqlConnection(ConnectionString))
+            {
+                con.Open();
+
+                MySqlCommand command = con.CreateCommand();
+
+                command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES ('" + RoomMac + "', '" + ownMac + "', " + DateTime.Now + ")";
+            }
+            
+        }
+
+
     }
 }
 

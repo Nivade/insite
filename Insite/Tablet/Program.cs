@@ -4,35 +4,35 @@ using NativeWifi;
 using System.Threading;
 using System.IO;
 using System.IO.Ports;
-using System.Timers;
 using Insite;
+using System.Timers;
 
 
-namespace Tablet
+namespace Insite
 {
-
     internal class Program
     {
 
-        private static readonly ArduinoControllerMain controller = new ArduinoControllerMain();
+        private static ArduinoControllerMain controller = new ArduinoControllerMain();
         private static string ssidtest;
         private static string Data;
         private static System.Threading.Timer scanner = new System.Threading.Timer(scanner_tick, null, 0, 10000);
-
-        private static readonly System.Timers.Timer ScanInterval = new System.Timers.Timer(5000);
+        private static System.Timers.Timer DataTimer = new System.Timers.Timer(5000);
         private static bool quit = false;
-        private static readonly WlanClient Client = new WlanClient();
+        private static string received;
+
+        private static WlanClient client = new WlanClient();
         /*[STAThread]*/
 
 
 
         private static void Main(string[] args)
         {
-            // DataTimer += new ElapsedEventHandler(OnTimedEvent);
 
+            while (controller.ReceivedData() != "?getId")
+                ;
             Console.WriteLine("Voer een netwerknaam in (e.g. fontysWPA): ");
             ssidtest = Console.ReadLine();
-
             {
                 int length = ssidtest.Length;
                 for (int i = 0; i < (32 - length); i++)
@@ -41,18 +41,26 @@ namespace Tablet
                 }
             }
 
-            ScanInterval.Elapsed += OnTimedEvent;
-            ScanInterval.Start();
+            DataTimer.Elapsed += OnTimedEvent;
+            DataTimer.Start();
+            string ownMac = "Tabblets MAC Address = " + client.Interfaces[0].NetworkInterface.GetPhysicalAddress().ToString();
+            int x = 1;
+            for (int i = 0; i < x; i++)
+            {
+                controller.SendData(ownMac);
+                Console.WriteLine(ownMac);
+            }
+            received = controller.ReceivedData();
 
+            // Wlan = new WlanClient();
             while (!quit) {}
-
         }
 
 
 
         private static void scanner_tick(object state)
         {
-            foreach (WlanClient.WlanInterface interfacetoscan in Client.Interfaces)
+            foreach (WlanClient.WlanInterface interfacetoscan in client.Interfaces)
             {
                 interfacetoscan.Scan();
             }
@@ -62,7 +70,19 @@ namespace Tablet
 
         private static void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            WifiDetection(Client);
+            WifiDetection(client);
+            received = controller.ReceivedData();
+            if (received != null)
+            {
+                if (received.Contains(";"))
+                {
+                    string[] addressen = received.Split(';');
+                    string ownMac = addressen[0];
+                    string RoomMac = addressen[1];
+
+                    Database.AddDataToDB(ownMac, RoomMac);
+                }
+            }
         }
 
 
@@ -80,7 +100,6 @@ namespace Tablet
 
                     //    MessageBox.Show(rss.ToString());
                     byte[] macAddr = network.dot11Bssid;
-
                     string tMac = "";
 
                     for (int i = 0; i < macAddr.Length; i++)
@@ -110,17 +129,10 @@ namespace Tablet
                 }
 
                 //Console.ReadLine();
-
-                string received = controller.ReceivedData();
-                if (received != null)
-                {
-                    Console.WriteLine(received);
-                }
             }
             Console.WriteLine(Data);
+            controller.SendData(Data);
             Data = null;
-
-            //    Thread.Sleep(2000);
         }
 
     }
