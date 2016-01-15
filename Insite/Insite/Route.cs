@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
+
 
 namespace Insite
 {
-    public partial class Route : Form
+    public partial class Route : MaterialForm
     {
         public Route()
         {

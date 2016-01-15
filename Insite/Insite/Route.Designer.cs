@@ -39,7 +39,7 @@
             // 
             // dtpDate
             // 
-            this.dtpDate.Location = new System.Drawing.Point(13, 95);
+            this.dtpDate.Location = new System.Drawing.Point(14, 159);
             this.dtpDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(183, 20);
@@ -49,16 +49,16 @@
             // lbInformation
             // 
             this.lbInformation.FormattingEnabled = true;
-            this.lbInformation.Location = new System.Drawing.Point(234, 37);
+            this.lbInformation.Location = new System.Drawing.Point(234, 102);
             this.lbInformation.Margin = new System.Windows.Forms.Padding(2);
             this.lbInformation.Name = "lbInformation";
-            this.lbInformation.Size = new System.Drawing.Size(286, 498);
+            this.lbInformation.Size = new System.Drawing.Size(286, 433);
             this.lbInformation.TabIndex = 15;
             // 
             // lblNaam
             // 
             this.lblNaam.AutoSize = true;
-            this.lblNaam.Location = new System.Drawing.Point(11, 21);
+            this.lblNaam.Location = new System.Drawing.Point(11, 80);
             this.lblNaam.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNaam.Name = "lblNaam";
             this.lblNaam.Size = new System.Drawing.Size(86, 13);
@@ -68,7 +68,7 @@
             // cbUsers
             // 
             this.cbUsers.FormattingEnabled = true;
-            this.cbUsers.Location = new System.Drawing.Point(12, 37);
+            this.cbUsers.Location = new System.Drawing.Point(14, 102);
             this.cbUsers.Name = "cbUsers";
             this.cbUsers.Size = new System.Drawing.Size(183, 21);
             this.cbUsers.TabIndex = 18;
@@ -77,7 +77,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(231, 18);
+            this.label1.Location = new System.Drawing.Point(231, 80);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(183, 13);
@@ -87,7 +87,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 80);
+            this.label2.Location = new System.Drawing.Point(14, 135);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
@@ -96,7 +96,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(13, 133);
+            this.button1.Location = new System.Drawing.Point(122, 184);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 21;
