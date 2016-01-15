@@ -256,37 +256,6 @@ namespace Insite
 
         }
 
-        public static List<Activity> RealtimeActivities
-        {
-            get
-            {
-                if (activities == null)
-                {
-                    realtimeactivities = new List<Activity>();
-
-                    string sql = string.Format("SELECT id_user, MAX(date) FROM {0} GROUP BY user_id ", Tables.Activity);
-
-                    using (MySqlConnection con = new MySqlConnection(ConnectionString))
-                    {
-                        con.Open();
-
-                        MySqlDataReader rows = GetMySqlDataReader(sql, con);
-
-                        while (rows.Read())
-                        {
-                            activities?.Add(new Activity(
-                                    Convert.ToInt32(rows[0]),
-                                    Convert.ToInt32(rows[1]),
-                                    Convert.ToInt32(rows[2]),
-                                    DateTime.Parse(Convert.ToString(rows[3]))));
-                        }
-                    }
-                }
-
-                return realtimeactivities;
-            }
-        }
-
     }
 }
 
