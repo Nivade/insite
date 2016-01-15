@@ -257,10 +257,12 @@ namespace Insite
 
                 try
                 {
+                    
                     DateTime dateValue = DateTime.Now;
                     string MySQLFormatDate = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
-                    command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + MySQLFormatDate + "')";
-                    Console.WriteLine(command.CommandText);
+                    MySqlCommand command = new MySqlCommand("INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + MySQLFormatDate + "')", con);
+                    
+                    
                     reader.Close();
                     command.ExecuteNonQuery();
                 }
