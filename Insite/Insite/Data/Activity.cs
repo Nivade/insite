@@ -11,7 +11,7 @@ namespace Insite
     {
         public const string TimeFormat = "YYYY-MM-DD HH:MM:SS";
 
-        public Activity(int id, int idroom, int iduser, string date)
+        public Activity(int id, int idroom, int iduser, DateTime date)
         {
             User tmpUser = null;
             foreach (User u in Database.Users)
@@ -24,7 +24,7 @@ namespace Insite
             this.Id = id;
             this.IdRoom = idroom;
             this.User = tmpUser;
-            this.Date = DateTime.ParseExact(date, TimeFormat, CultureInfo.InvariantCulture);
+            this.Date = date;
 
         }
 
