@@ -239,9 +239,10 @@ namespace Insite
                 {
                     userId = Convert.ToInt32(reader["id"]);
                 }
+                reader.Close();
 
                 command.CommandText = "SELECT room.id FROM room WHERE room.mac ='" + RoomMac + "'";
-                command.ExecuteReader();
+                reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     roomId = Convert.ToInt32(reader["id"]);
@@ -251,7 +252,8 @@ namespace Insite
                 try
                 {
                     command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + DateTime.Now + "')";
-                    //command.ExecuteNonQuery();
+                    reader.Close();
+                    command.ExecuteNonQuery();
                 }
                 catch (MySqlException)
                 {
