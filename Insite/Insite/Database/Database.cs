@@ -227,13 +227,13 @@ namespace Insite
         {
             using (MySqlConnection con = new MySqlConnection(ConnectionString))
             {
+                
                 int roomId = 0;
                 int userId = 0;
                 con.Open();
-                MySqlCommand command = con.CreateCommand();
+                string query = "SELECT user.id FROM user, device WHERE user.id_device = device.id AND device.mac ='" + ownMac + "'";
+                MySqlDataReader reader = GetMySqlDataReader(query, con);
 
-                command.CommandText = "SELECT user.id FROM user, device WHERE user.id_device = device.id AND device.mac ='" + ownMac + "'";
-                MySql.Data.MySqlClient.MySqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -249,8 +249,11 @@ namespace Insite
                 }
 
                 Console.WriteLine("userid: " + userId + " roomid: " + roomId);
+
+                MySqlCommand command = new MySqlCommand();
                 try
                 {
+                    
                     command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + DateTime.Now + "')";
                     reader.Close();
                     command.ExecuteNonQuery();
