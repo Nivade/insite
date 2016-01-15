@@ -16,7 +16,7 @@ namespace Insite
             User tmpUser = null;
             foreach (User u in Database.Users)
             {
-                if (u.Id == id)
+                if (u.Id == iduser)
                 {
                     tmpUser = u;
                 }
