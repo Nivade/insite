@@ -29,6 +29,8 @@ namespace Insite
         private static List<Notification> notifications;
         private static List<Room> rooms;
         private static List<Activity> activities;
+        private static List<Activity> realtimeactivities;
+
 
 
         /// <summary>
@@ -225,15 +227,39 @@ namespace Insite
         {
             using (MySqlConnection con = new MySqlConnection(ConnectionString))
             {
+                int roomId = 0;
+                int userId = 0;
                 con.Open();
-
                 MySqlCommand command = con.CreateCommand();
 
-                command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES ('" + RoomMac + "', '" + ownMac + "', " + DateTime.Now + ")";
-            }
-            
-        }
+                command.CommandText = "SELECT user.id FROM user, device WHERE user.id_device = device.id AND device.mac ='" + ownMac + "'";
+                MySql.Data.MySqlClient.MySqlDataReader reader = command.ExecuteReader();
 
+                while (reader.Read())
+                {
+                    userId = Convert.ToInt32(reader["id"]);
+                }
+
+                command.CommandText = "SELECT room.id FROM room WHERE room.mac ='" + RoomMac + "'";
+                command.ExecuteReader();
+                while (reader.Read())
+                {
+                    roomId = Convert.ToInt32(reader["id"]);
+                }
+
+                Console.WriteLine("userid: " + userId + " roomid: " + roomId);
+                try
+                {
+                    command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + DateTime.Now + "')";
+                    //command.ExecuteNonQuery();
+                }
+                catch (MySqlException)
+                {
+                    Console.WriteLine("exception in database");
+                }
+            }
+
+        }
 
     }
 }

@@ -17,7 +17,6 @@ namespace Insite
 
         void datagetter_tick(object state)
         {
-
             try
             {
                 if (serialPort.BytesToRead > 0)
@@ -34,7 +33,7 @@ namespace Insite
         }
         public ArduinoControllerMain()
         {
-            serialPort.PortName = "COM4";
+            serialPort.PortName = "COM3";
             serialPort.BaudRate = 9600;
             serialPort.Parity = Parity.None;
             serialPort.DataBits = 8;
@@ -60,13 +59,12 @@ namespace Insite
 
         public void SendData(string data)
         {
-            serialPort.Write(data);
+            serialPort.Write("#" + data + "%");
         }
         public string ReceivedData()
         {
             if (buffer != null)
             {
-
                 if (buffer.StartsWith("#") && buffer.IndexOf("%") > 0)
                 {
 
@@ -80,11 +78,9 @@ namespace Insite
                 if (!buffer.StartsWith("#") && buffer != "")
                 {
                     buffer = buffer.Remove(0, 1);
-
                 }
             }
             return null;
-
         }
     }
 }

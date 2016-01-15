@@ -17,7 +17,7 @@ namespace Insite
         private static string ssidtest;
         private static string Data;
         private static System.Threading.Timer scanner = new System.Threading.Timer(scanner_tick, null, 0, 10000);
-        private static System.Timers.Timer DataTimer = new System.Timers.Timer(5000);
+        private static System.Timers.Timer DataTimer = new System.Timers.Timer(1000);
         private static bool quit = false;
         private static string received;
 
@@ -28,9 +28,10 @@ namespace Insite
 
         private static void Main(string[] args)
         {
-
-            while (controller.ReceivedData() != "?getId")
-                ;
+            controller.SendData("RESET");
+            string ownMac = client.Interfaces[0].NetworkInterface.GetPhysicalAddress().ToString();
+            Console.WriteLine("Own MAC Address = " + ownMac);
+            while (controller.ReceivedData() != "GET_ID") ;
             Console.WriteLine("Voer een netwerknaam in (e.g. fontysWPA): ");
             ssidtest = Console.ReadLine();
             {
@@ -43,17 +44,12 @@ namespace Insite
 
             DataTimer.Elapsed += OnTimedEvent;
             DataTimer.Start();
-            string ownMac = "Tabblets MAC Address = " + client.Interfaces[0].NetworkInterface.GetPhysicalAddress().ToString();
-            int x = 1;
-            for (int i = 0; i < x; i++)
-            {
-                controller.SendData(ownMac);
-                Console.WriteLine(ownMac);
-            }
-            received = controller.ReceivedData();
 
-            // Wlan = new WlanClient();
-            while (!quit) {}
+            controller.SendData("id:" + ownMac);
+
+
+
+            while (!quit) { }
         }
 
 
@@ -71,18 +67,29 @@ namespace Insite
         private static void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             WifiDetection(client);
-            received = controller.ReceivedData();
+            while (received == null)
+            {
+                received = controller.ReceivedData();
+            }
+
             if (received != null)
             {
+                //Console.WriteLine(received);
                 if (received.Contains(";"))
                 {
-                    string[] addressen = received.Split(';');
-                    string ownMac = addressen[0];
-                    string RoomMac = addressen[1];
-
-                    Database.AddDataToDB(ownMac, RoomMac);
+                    if (received.StartsWith("NETWORK:"))
+                    {
+                        //Console.WriteLine(received);
+                        received = received.Remove(0, 8);
+                        string[] addressen = received.Split(';');
+                        string ownMac = addressen[0];
+                        string RoomMac = addressen[1];
+                        Console.WriteLine("ROOMMAC: " + RoomMac + " " + RoomMac.Length.ToString());
+                        Database.AddDataToDB(ownMac, RoomMac);
+                    }
                 }
             }
+
         }
 
 
@@ -97,8 +104,6 @@ namespace Insite
                 foreach (Wlan.WlanBssEntry network in wlanBssEntries)
                 {
                     int rss = network.rssi;
-
-                    //    MessageBox.Show(rss.ToString());
                     byte[] macAddr = network.dot11Bssid;
                     string tMac = "";
 
@@ -112,25 +117,15 @@ namespace Insite
 
                     if (ssidtest == SSID)
                     {
-                        // Console.WriteLine("Found network with SSID {0}.", SSID);
 
                         Data += network.linkQuality;
                         Data += ";";
-
-                        //Console.WriteLine("#{0}; ", network.linkQuality);
-                        //Console.WriteLine("{0}% ", tMac);
                         Data += tMac;
                         Data += ";";
                     }
-
-                    //Console.WriteLine("BSS Type: {0}.", network.dot11BssType);
-                    //System.Windows.Forms.Clipboard.SetText(SSID);
-                    //Console.WriteLine("RSSID:{0}", rss.ToString());
                 }
-
-                //Console.ReadLine();
             }
-            Console.WriteLine(Data);
+            //Console.WriteLine(Data);
             controller.SendData(Data);
             Data = null;
         }

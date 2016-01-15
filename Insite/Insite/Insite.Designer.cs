@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.pbRoom3 = new System.Windows.Forms.PictureBox();
-            this.pbGang2 = new System.Windows.Forms.PictureBox();
             this.pbRoom2 = new System.Windows.Forms.PictureBox();
             this.btnRoute = new System.Windows.Forms.Button();
             this.lbUserInformation = new System.Windows.Forms.ListBox();
@@ -38,14 +37,15 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbGang3 = new System.Windows.Forms.PictureBox();
             this.pbRoom4 = new System.Windows.Forms.PictureBox();
+            this.pbGang2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbRoom3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGang2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRoom2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGang1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRoom1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGang3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRoom4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGang2)).BeginInit();
             this.SuspendLayout();
             // 
             // pbRoom3
@@ -56,15 +56,6 @@
             this.pbRoom3.Size = new System.Drawing.Size(100, 241);
             this.pbRoom3.TabIndex = 21;
             this.pbRoom3.TabStop = false;
-            // 
-            // pbGang2
-            // 
-            this.pbGang2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.pbGang2.Location = new System.Drawing.Point(180, 279);
-            this.pbGang2.Name = "pbGang2";
-            this.pbGang2.Size = new System.Drawing.Size(123, 39);
-            this.pbGang2.TabIndex = 20;
-            this.pbGang2.TabStop = false;
             // 
             // pbRoom2
             // 
@@ -139,6 +130,15 @@
             this.pbRoom4.TabIndex = 23;
             this.pbRoom4.TabStop = false;
             // 
+            // pbGang2
+            // 
+            this.pbGang2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pbGang2.Location = new System.Drawing.Point(180, 279);
+            this.pbGang2.Name = "pbGang2";
+            this.pbGang2.Size = new System.Drawing.Size(123, 39);
+            this.pbGang2.TabIndex = 20;
+            this.pbGang2.TabStop = false;
+            // 
             // Insite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -158,13 +158,13 @@
             this.Name = "Insite";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pbRoom3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGang2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRoom2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGang1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRoom1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbGang3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRoom4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGang2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -172,7 +172,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pbRoom3;
-        private System.Windows.Forms.PictureBox pbGang2;
         private System.Windows.Forms.PictureBox pbRoom2;
         private System.Windows.Forms.Button btnRoute;
         private System.Windows.Forms.ListBox lbUserInformation;
@@ -181,6 +180,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pbGang3;
         private System.Windows.Forms.PictureBox pbRoom4;
+        private System.Windows.Forms.PictureBox pbGang2;
     }
 }
 
