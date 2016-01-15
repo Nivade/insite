@@ -31,6 +31,18 @@ namespace Insite
 
         private void UserSelected(object sender, EventArgs e)
         {
+            ShowActivities();
+        }
+
+        private void DateSelected(object sender, EventArgs e)
+        {
+            ShowActivities();
+        }
+
+
+
+        private void ShowActivities()
+        {
             lbInformation.Items.Clear();
 
             List<Activity> userActivities = new List<Activity>();
@@ -38,7 +50,10 @@ namespace Insite
             {
                 if (cbUsers.SelectedItem == a.User)
                 {
-                    lbInformation.Items.Add(a);
+                    if (a.Date.Year == dtpDate.Value.Year &&
+                        a.Date.Month == dtpDate.Value.Month &&
+                        a.Date.Day == dtpDate.Value.Day)
+                        lbInformation.Items.Add(a);
                 }
             }
         }

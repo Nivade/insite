@@ -11,27 +11,50 @@ namespace Insite
     {
         public const string TimeFormat = "YYYY-MM-DD HH:MM:SS";
 
-        public Activity(int id, int idroom, int iduser, DateTime date)
+        public Activity(int id, int roomId, int iduser, DateTime date)
         {
-            User tmpUser = null;
+
             foreach (User u in Database.Users)
             {
-                if (u.Id == id)
+                if (u.Id == iduser)
                 {
-                    tmpUser = u;
+                    User = u;
+                    break;
                 }
             }
+
+            foreach (Room r in Database.Rooms)
+            {
+                if (r.Id == roomId)
+                {
+                    Room = r;
+                    break;
+                }
+            }
+
             this.Id = id;
-            this.IdRoom = idroom;
-            this.User = tmpUser;
             this.Date = date;
 
         }
 
         public int Id { get; private set; }
-        public int IdRoom { get; private set; }
+        public Room Room { get; private set; }
         public User User { get; private set; }
         public DateTime Date { get; private set; }
+
+
+
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>
+        /// A string that represents the current object.
+        /// </returns>
+        public override string ToString()
+        {
+            return Room.Mac + " ---- " + Date.ToString();
+        }
+
     }
 
 }

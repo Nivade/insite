@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dtpStart = new System.Windows.Forms.DateTimePicker();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.btnGetRoute = new System.Windows.Forms.Button();
             this.lbInformation = new System.Windows.Forms.ListBox();
-            this.lblStartingDate = new System.Windows.Forms.Label();
             this.lblNaam = new System.Windows.Forms.Label();
             this.cbUsers = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // dtpStart
+            // dtpDate
             // 
-            this.dtpStart.Location = new System.Drawing.Point(94, 58);
-            this.dtpStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(144, 20);
-            this.dtpStart.TabIndex = 17;
+            this.dtpDate.Location = new System.Drawing.Point(66, 47);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(183, 20);
+            this.dtpDate.TabIndex = 17;
+            this.dtpDate.ValueChanged += new System.EventHandler(this.DateSelected);
             // 
             // btnGetRoute
             // 
-            this.btnGetRoute.Location = new System.Drawing.Point(93, 128);
+            this.btnGetRoute.Location = new System.Drawing.Point(106, 71);
             this.btnGetRoute.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGetRoute.Name = "btnGetRoute";
-            this.btnGetRoute.Size = new System.Drawing.Size(143, 37);
+            this.btnGetRoute.Size = new System.Drawing.Size(143, 21);
             this.btnGetRoute.TabIndex = 16;
             this.btnGetRoute.Text = "Get the Route";
             this.btnGetRoute.UseVisualStyleBackColor = true;
@@ -57,21 +57,11 @@
             // lbInformation
             // 
             this.lbInformation.FormattingEnabled = true;
-            this.lbInformation.Location = new System.Drawing.Point(30, 182);
+            this.lbInformation.Location = new System.Drawing.Point(266, 21);
             this.lbInformation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbInformation.Name = "lbInformation";
             this.lbInformation.Size = new System.Drawing.Size(251, 303);
             this.lbInformation.TabIndex = 15;
-            // 
-            // lblStartingDate
-            // 
-            this.lblStartingDate.AutoSize = true;
-            this.lblStartingDate.Location = new System.Drawing.Point(20, 58);
-            this.lblStartingDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblStartingDate.Name = "lblStartingDate";
-            this.lblStartingDate.Size = new System.Drawing.Size(70, 13);
-            this.lblStartingDate.TabIndex = 13;
-            this.lblStartingDate.Text = "Starting date:";
             // 
             // lblNaam
             // 
@@ -86,9 +76,9 @@
             // cbUsers
             // 
             this.cbUsers.FormattingEnabled = true;
-            this.cbUsers.Location = new System.Drawing.Point(94, 24);
+            this.cbUsers.Location = new System.Drawing.Point(66, 21);
             this.cbUsers.Name = "cbUsers";
-            this.cbUsers.Size = new System.Drawing.Size(144, 21);
+            this.cbUsers.Size = new System.Drawing.Size(183, 21);
             this.cbUsers.TabIndex = 18;
             this.cbUsers.SelectedIndexChanged += new System.EventHandler(this.UserSelected);
             // 
@@ -96,12 +86,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 548);
+            this.ClientSize = new System.Drawing.Size(531, 335);
             this.Controls.Add(this.cbUsers);
-            this.Controls.Add(this.dtpStart);
+            this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.btnGetRoute);
             this.Controls.Add(this.lbInformation);
-            this.Controls.Add(this.lblStartingDate);
             this.Controls.Add(this.lblNaam);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Route";
@@ -112,10 +101,9 @@
         }
 
         #endregion
-        private System.Windows.Forms.DateTimePicker dtpStart;
+        private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Button btnGetRoute;
         private System.Windows.Forms.ListBox lbInformation;
-        private System.Windows.Forms.Label lblStartingDate;
         private System.Windows.Forms.Label lblNaam;
         private System.Windows.Forms.ComboBox cbUsers;
     }
