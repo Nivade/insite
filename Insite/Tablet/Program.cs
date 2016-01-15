@@ -17,7 +17,7 @@ namespace Insite
         private static string ssidtest;
         private static string Data;
         private static System.Threading.Timer scanner = new System.Threading.Timer(scanner_tick, null, 0, 10000);
-        private static System.Timers.Timer DataTimer = new System.Timers.Timer(5000);
+        private static System.Timers.Timer DataTimer = new System.Timers.Timer(1000);
         private static bool quit = false;
         private static string received;
 
@@ -30,7 +30,7 @@ namespace Insite
         {
             controller.SendData("RESET");
             string ownMac = client.Interfaces[0].NetworkInterface.GetPhysicalAddress().ToString();
-            Console.WriteLine("Tablets MAC Address = " + ownMac);
+            Console.WriteLine("Own MAC Address = " + ownMac);
             while (controller.ReceivedData() != "GET_ID") ;
             Console.WriteLine("Voer een netwerknaam in (e.g. fontysWPA): ");
             ssidtest = Console.ReadLine();
@@ -74,12 +74,12 @@ namespace Insite
 
             if (received != null)
             {
-                Console.WriteLine(received);
+                //Console.WriteLine(received);
                 if (received.Contains(";"))
                 {
                     if (received.StartsWith("NETWORK:"))
                     {
-                        Console.WriteLine(received);
+                        //Console.WriteLine(received);
                         received = received.Remove(0, 8);
                         string[] addressen = received.Split(';');
                         string ownMac = addressen[0];

@@ -231,19 +231,23 @@ namespace Insite
                 int userId = 0;
                 con.Open();
                 MySqlCommand command = con.CreateCommand();
-                
+
                 command.CommandText = "SELECT user.id FROM user, device WHERE user.id_device = device.id AND device.mac ='" + ownMac + "'";
                 MySql.Data.MySqlClient.MySqlDataReader reader = command.ExecuteReader();
+
                 while (reader.Read())
                 {
                     userId = Convert.ToInt32(reader["id"]);
                 }
+
                 command.CommandText = "SELECT room.id FROM room WHERE room.mac ='" + RoomMac + "'";
+                command.ExecuteReader();
                 while (reader.Read())
                 {
                     roomId = Convert.ToInt32(reader["id"]);
                 }
-                Console.WriteLine("userid: " + userId + "roomid: " + roomId);
+
+                Console.WriteLine("userid: " + userId + " roomid: " + roomId);
                 try
                 {
                     command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + DateTime.Now + "')";
@@ -251,6 +255,7 @@ namespace Insite
                 }
                 catch (MySqlException)
                 {
+                    Console.WriteLine("exception in database");
                 }
             }
 
