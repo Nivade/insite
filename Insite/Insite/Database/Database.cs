@@ -237,7 +237,7 @@ namespace Insite
 
                 MySqlDataReader reader = GetMySqlDataReader(query, con);
 
-                
+
 
                 while (reader.Read())
                 {
@@ -254,12 +254,14 @@ namespace Insite
                 reader.Close();
                 Console.WriteLine("userid: " + userId + " roomid: " + roomId);
 
-                
+
                 try
                 {
-                    MySqlCommand command = new MySqlCommand();
-                    command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + DateTime.Now + "')";
-                    command.Connection = con;
+                    DateTime dateValue = DateTime.Now;
+                    string MySQLFormatDate = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+                    command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + MySQLFormatDate + "')";
+                    Console.WriteLine(command.CommandText);
+                    reader.Close();
                     command.ExecuteNonQuery();
                 }
                 catch (MySqlException)
