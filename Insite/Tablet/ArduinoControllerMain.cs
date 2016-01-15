@@ -34,7 +34,7 @@ namespace Insite
         }
         public ArduinoControllerMain()
         {
-            serialPort.PortName = "COM4";
+            serialPort.PortName = "COM3";
             serialPort.BaudRate = 9600;
             serialPort.Parity = Parity.None;
             serialPort.DataBits = 8;
@@ -60,7 +60,7 @@ namespace Insite
 
         public void SendData(string data)
         {
-            serialPort.Write(data);
+            serialPort.Write("#" + data + "%");
         }
         public string ReceivedData()
         {

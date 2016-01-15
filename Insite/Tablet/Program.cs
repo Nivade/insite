@@ -28,9 +28,7 @@ namespace Insite
 
         private static void Main(string[] args)
         {
-
-            while (controller.ReceivedData() != "?getId")
-                ;
+            while (controller.ReceivedData() != "GET_ID") ;
             Console.WriteLine("Voer een netwerknaam in (e.g. fontysWPA): ");
             ssidtest = Console.ReadLine();
             {
@@ -43,14 +41,14 @@ namespace Insite
 
             DataTimer.Elapsed += OnTimedEvent;
             DataTimer.Start();
-            string ownMac = "Tabblets MAC Address = " + client.Interfaces[0].NetworkInterface.GetPhysicalAddress().ToString();
+            string ownMac = client.Interfaces[0].NetworkInterface.GetPhysicalAddress().ToString();
             int x = 1;
             for (int i = 0; i < x; i++)
             {
-                controller.SendData(ownMac);
-                Console.WriteLine(ownMac);
+                controller.SendData("id:" + ownMac);
+                Console.WriteLine("Tabblets MAC Address = " + ownMac);
             }
-            received = controller.ReceivedData();
+         
 
             // Wlan = new WlanClient();
             while (!quit) {}
@@ -72,17 +70,23 @@ namespace Insite
         {
             WifiDetection(client);
             received = controller.ReceivedData();
+            Console.WriteLine(received);
             if (received != null)
             {
                 if (received.Contains(";"))
                 {
-                    string[] addressen = received.Split(';');
-                    string ownMac = addressen[0];
-                    string RoomMac = addressen[1];
+                    if (received.StartsWith("NETWORK:"))
+                    {
+                        received = received.Remove(0, 8);
+                        string[] addressen = received.Split(';');
+                        string ownMac = addressen[0];
+                        string RoomMac = addressen[1];
+                        Database.AddDataToDB(ownMac, RoomMac);
+                    }
 
-                    Database.AddDataToDB(ownMac, RoomMac);
                 }
             }
+           
         }
 
 
