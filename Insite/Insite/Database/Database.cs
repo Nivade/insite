@@ -241,20 +241,22 @@ namespace Insite
                 }
                 reader.Close();
 
-                command.CommandText = "SELECT room.id FROM room WHERE room.mac ='" + RoomMac + "'";
-                reader = command.ExecuteReader();
+                query = "SELECT room.id FROM room WHERE room.mac ='" + RoomMac + "'";
+                reader = GetMySqlDataReader(query, con);
                 while (reader.Read())
                 {
                     roomId = Convert.ToInt32(reader["id"]);
                 }
-
+                reader.Dispose();
                 Console.WriteLine("userid: " + userId + " roomid: " + roomId);
 
                 MySqlCommand command = new MySqlCommand();
                 try
                 {
-                    
-                    command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + DateTime.Now + "')";
+                    DateTime dateValue = DateTime.Now;
+                    string MySQLFormatDate = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
+                    command.CommandText = "INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + MySQLFormatDate + "')";
+                    Console.WriteLine(command.CommandText);
                     reader.Close();
                     command.ExecuteNonQuery();
                 }

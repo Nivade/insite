@@ -33,7 +33,7 @@ namespace Insite
         }
         public ArduinoControllerMain()
         {
-            serialPort.PortName = "COM71";
+            serialPort.PortName = "COM3";
             serialPort.BaudRate = 9600;
             serialPort.Parity = Parity.None;
             serialPort.DataBits = 8;
