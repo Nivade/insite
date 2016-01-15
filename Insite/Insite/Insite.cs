@@ -27,12 +27,17 @@ namespace Insite
 
         private void LoadUsers()
         {
-            foreach (User u in Database.Users)
+           /* foreach (User u in Database.Users)
             {
-                users.Items.Add(u.Name);
+               // users.Items.Add(u.Name);
             }
+            */
         }
 
-
+        private void btnRoute_Click(object sender, EventArgs e)
+        {
+            Route r = new Route();
+            r.Show();
+        }
     }
 }
