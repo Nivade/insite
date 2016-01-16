@@ -17,7 +17,7 @@ namespace Insite
         private static string ssidtest;
         private static string Data;
         private static System.Threading.Timer scanner = new System.Threading.Timer(scanner_tick, null, 0, 10000);
-        private static System.Timers.Timer DataTimer = new System.Timers.Timer(1000);
+        private static System.Timers.Timer DataTimer = new System.Timers.Timer(2000);
         private static bool quit = false;
         private static string received;
 
@@ -51,7 +51,8 @@ namespace Insite
 
             while (!quit)
             {
-                
+
+                //OnTimedEvent(null, null);
             }
         }
 
@@ -89,7 +90,10 @@ namespace Insite
                         string ownMac = addressen[0];
                         string RoomMac = addressen[1];
                         Console.WriteLine("ROOMMAC: " + RoomMac + " " + RoomMac.Length.ToString());
+
                         Database.AddDataToDB(ownMac, RoomMac);
+
+                        received = null;
                     }
                 }
             }
