@@ -1,54 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Globalization;
+﻿
+
+
+using System;
 
 namespace Insite
 {
     public class Activity
     {
+
         public const string TimeFormat = "YYYY-MM-DD HH:MM:SS";
 
-        public Activity(int id, int roomId, int iduser, DateTime date)
-        {
+        /// <summary>
+        /// The activities ID number.
+        /// </summary>
+        public int ID { get; private set; }
 
+
+        /// <summary>
+        /// The location of this activity.
+        /// </summary>
+        public Room Room { get; private set; }
+
+
+        /// <summary>
+        /// The device of this activity.
+        /// </summary>
+        public Device Device { get; private set; }
+
+
+        /// <summary>
+        /// The date this activity is recorded.
+        /// </summary>
+        public DateTime Date { get; private set; }
+
+
+
+        public Activity(int id, int idRoom, int idDevice, DateTime date)
+        {
+            // Find the device that matches the given id.
             foreach (Device d in Database.Devices)
             {
-                if (d.Id == iduser)
+                if (d.Id == idDevice)
                 {
                     Device = d;
                     break;
                 }
             }
 
+            // Find the room that matches the given id.
             foreach (Room r in Database.Rooms)
             {
-                if (r.Id == roomId)
+                if (r.Id == idRoom)
                 {
                     Room = r;
                     break;
                 }
             }
 
-            this.Id = id;
-            this.Date = date;
+            ID = id;
+            Date = date;
 
         }
 
-        public int Id { get; private set; }
-        public Room Room { get; private set; }
-        public Device Device { get; private set; }
-        public DateTime Date { get; private set; }
+        
 
-
-
-        /// <summary>
-        /// Returns a string that represents the current object.
-        /// </summary>
         /// <returns>
-        /// A string that represents the current object.
+        /// Returns a string containing the room and recorded time.
         /// </returns>
         public override string ToString()
         {
