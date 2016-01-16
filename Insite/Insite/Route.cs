@@ -47,17 +47,21 @@ namespace Insite
         {
             lbInformation.Items.Clear();
 
+            User selectedUser = (User) cbUsers.SelectedItem;
+
             List<Activity> userActivities = new List<Activity>();
             foreach (Activity a in Database.Activities)
             {
-                if (cbUsers.SelectedItem == a.User)
+                if (a.Device.Id == selectedUser.Device.Id)
                 {
                     if (a.Date.Year == dtpDate.Value.Year &&
                         a.Date.Month == dtpDate.Value.Month &&
                         a.Date.Day == dtpDate.Value.Day)
-                        lbInformation.Items.Add(a);
+                        userActivities.Add(a);
                 }
             }
+
+            lbInformation.Items.AddRange(userActivities.ToArray());
         }
 
         private void button1_Click(object sender, EventArgs e)

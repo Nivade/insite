@@ -14,11 +14,11 @@ namespace Insite
         public Activity(int id, int roomId, int iduser, DateTime date)
         {
 
-            foreach (User u in Database.Users)
+            foreach (Device d in Database.Devices)
             {
-                if (u.Id == iduser)
+                if (d.Id == iduser)
                 {
-                    User = u;
+                    Device = d;
                     break;
                 }
             }
@@ -39,7 +39,7 @@ namespace Insite
 
         public int Id { get; private set; }
         public Room Room { get; private set; }
-        public User User { get; private set; }
+        public Device Device { get; private set; }
         public DateTime Date { get; private set; }
 
 
@@ -52,6 +52,7 @@ namespace Insite
         /// </returns>
         public override string ToString()
         {
+
             return Room.Name + " ---- " + Date.ToString();
         }
 
