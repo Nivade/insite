@@ -53,7 +53,7 @@ namespace Insite
         public override string ToString()
         {
 
-            return Room.Name + " ---- " + Date.ToString();
+            return Room.Name + " ---- " + Date.TimeOfDay;
         }
 
     }
