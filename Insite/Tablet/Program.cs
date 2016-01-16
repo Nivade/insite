@@ -33,6 +33,7 @@ namespace Insite
             Console.WriteLine("Own MAC Address = " + ownMac);
             while (controller.ReceivedData() != "GET_ID") ;
             Console.WriteLine("Voer een netwerknaam in (e.g. fontysWPA): ");
+
             ssidtest = Console.ReadLine();
             {
                 int length = ssidtest.Length;
@@ -49,7 +50,10 @@ namespace Insite
 
 
 
-            while (!quit) { }
+            while (!quit)
+            {
+                
+            }
         }
 
 
