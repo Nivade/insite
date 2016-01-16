@@ -45,7 +45,6 @@ namespace Insite
 
             DataTimer.Elapsed += OnTimedEvent;
             DataTimer.Start();
-
             controller.SendData("id:" + ownMac);
 
 
@@ -71,6 +70,7 @@ namespace Insite
         private static void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             WifiDetection(client);
+
             while (received == null)
             {
                 received = controller.ReceivedData();

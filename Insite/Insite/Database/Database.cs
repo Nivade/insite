@@ -228,14 +228,16 @@ namespace Insite
         {
             using (MySqlConnection con = new MySqlConnection(ConnectionString))
             {
-                
+                MySqlDataReader reader;
+                DateTime currentDate = DateTime.Now;
                 int roomId = 0;
                 int userId = 0;
                 con.Open();
 
-                // Get the divice id from the db.
+
+                // Retrieve the Device ID matching the given mac address.
                 string querydeviceid = string.Format("SELECT id FROM device WHERE mac = '{0}'", ownMac);
-                MySqlDataReader reader = GetMySqlDataReader(querydeviceid, con);
+                reader = GetMySqlDataReader(querydeviceid, con);
                 while (reader.Read())
                 {
                     userId = Convert.ToInt32(reader[0]);
@@ -252,25 +254,14 @@ namespace Insite
                 }
                 reader.Close();
 
+                
+                string queryActivity = string.Format("INSERT INTO activity (id_room, id_user, date) VALUES ({0}, {1}, '{2}')", 
+                    roomId, 
+                    userId,
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
-                Console.WriteLine("userid: " + userId + " roomid: " + roomId);
-
-
-                try
-                {
-                    
-                    DateTime dateValue = DateTime.Now;
-                    string MySQLFormatDate = dateValue.ToString("yyyy-MM-dd HH:mm:ss");
-                    MySqlCommand command = new MySqlCommand("INSERT INTO activity (id_room, id_user, date) VALUES (" + roomId + ", " + userId + ", '" + MySQLFormatDate + "')", con);
-                    
-                    
-                    reader.Close();
-                    command.ExecuteNonQuery();
-                }
-                catch (MySqlException)
-                {
-                    Console.WriteLine("exception in database");
-                }
+                MySqlCommand command = new MySqlCommand(queryActivity, con);
+                command.ExecuteNonQuery();
             }
 
         }
