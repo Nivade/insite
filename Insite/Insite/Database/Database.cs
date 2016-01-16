@@ -233,25 +233,26 @@ namespace Insite
                 int userId = 0;
                 con.Open();
 
-                string query = "SELECT user.id FROM user, device WHERE user.id_device = device.id AND device.mac ='" + ownMac + "'";
-
-                MySqlDataReader reader = GetMySqlDataReader(query, con);
-
-
-
+                // Get the divice id from the db.
+                string querydeviceid = string.Format("SELECT id FROM device WHERE mac = '{0}'", ownMac);
+                MySqlDataReader reader = GetMySqlDataReader(querydeviceid, con);
                 while (reader.Read())
                 {
-                    userId = Convert.ToInt32(reader["id"]);
+                    userId = Convert.ToInt32(reader[0]);
                 }
                 reader.Close();
 
-                query = "SELECT room.id FROM room WHERE room.mac ='" + RoomMac + "'";
-                reader = GetMySqlDataReader(query, con);
+
+
+                string queryRoomId = string.Format("SELECT id FROM room WHERE mac = '{0}'", RoomMac);
+                reader = GetMySqlDataReader(queryRoomId, con);
                 while (reader.Read())
                 {
-                    roomId = Convert.ToInt32(reader["id"]);
+                    roomId = Convert.ToInt32(reader[0]);
                 }
                 reader.Close();
+
+
                 Console.WriteLine("userid: " + userId + " roomid: " + roomId);
 
 
