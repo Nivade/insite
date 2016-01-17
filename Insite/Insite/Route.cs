@@ -47,7 +47,7 @@ namespace Insite
         {
             lbInformation.Items.Clear();
 
-            User selectedUser = (User) cbUsers.SelectedItem;
+            User selectedUser = (User)cbUsers.SelectedItem;
 
             List<Activity> userActivities = new List<Activity>();
             foreach (Activity a in Database.Activities)
@@ -56,15 +56,13 @@ namespace Insite
                 {
                     if (a.Date.Year == dtpDate.Value.Year &&
                         a.Date.Month == dtpDate.Value.Month &&
-                        a.Date.Day == dtpDate.Value.Day)
+                        a.Date.Day == dtpDate.Value.Day &&
+                        a.Room != null)
                         userActivities.Add(a);
                 }
             }
-            if (userActivities.ToArray() != null)
-            {
-                //throws npe if some of the entries have room.id == 0
-                lbInformation.Items.AddRange(userActivities.ToArray());
-            }
+            lbInformation.Items.AddRange(userActivities.ToArray());
+
         }
 
         private void btnToday_Click(object sender, EventArgs e)
