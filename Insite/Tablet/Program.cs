@@ -13,7 +13,7 @@ namespace Insite
     internal class Program
     {
 
-        private static ArduinoControllerMain controller = new ArduinoControllerMain();
+        private static ArduinoControllerMain controller;
         private static string ssidtest;
         private static string Data;
         private static System.Threading.Timer scanner = new System.Threading.Timer(scanner_tick, null, 0, 10000);
@@ -28,6 +28,18 @@ namespace Insite
 
         private static void Main(string[] args)
         {
+            string[] ports = SerialPort.GetPortNames();
+
+            Console.WriteLine("The following serial ports were found:");
+
+            // Display each port name to the console.
+            foreach (string port in ports)
+            {
+                Console.WriteLine(port);
+            }
+            Console.WriteLine("Input the portnumber of the arduino.");
+            string portNumber = Console.ReadLine();
+            controller = new ArduinoControllerMain("COM" + portNumber);
             controller.SendData("RESET");
             string ownMac = client.Interfaces[0].NetworkInterface.GetPhysicalAddress().ToString();
             Console.WriteLine("Own MAC Address = " + ownMac);

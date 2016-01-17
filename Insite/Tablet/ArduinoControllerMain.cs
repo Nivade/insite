@@ -31,9 +31,9 @@ namespace Insite
 
             }
         }
-        public ArduinoControllerMain()
+        public ArduinoControllerMain(string portName)
         {
-            serialPort.PortName = "COM71";
+            serialPort.PortName = portName;
             serialPort.BaudRate = 9600;
             serialPort.Parity = Parity.None;
             serialPort.DataBits = 8;
