@@ -15,8 +15,10 @@ namespace Tablet
         private static ArduinoControllerMain controller;
         private static string ssidtest;
         private static string Data;
-        private static System.Threading.Timer scanner = new System.Threading.Timer(scanner_tick, null, 0, 10000);
-        private static System.Timers.Timer DataTimer = new System.Timers.Timer(2000);
+        private static int timerUpdateFrequency = 30000; // update database every 30 seconds
+        private static int scanTimerFrequency = 10000; // scan for wifi networks every 10 seconds
+        private static System.Threading.Timer scanner = new System.Threading.Timer(scanner_tick, null, 0, scanTimerFrequency);
+        private static System.Timers.Timer DataTimer = new System.Timers.Timer(timerUpdateFrequency);
         private static bool quit = false;
         private static string received;
 
@@ -27,14 +29,12 @@ namespace Tablet
 
         private static void Main(string[] args)
         {
+            // Get all available ports, so you know where you can choose from
             string[] ports = SerialPort.GetPortNames();
-
             Console.WriteLine("The following serial ports were found:");
-
-            // Display each port name to the console.
             foreach (string port in ports)
             {
-                Console.WriteLine(port);
+                Console.Write(port + ";");
             }
             Console.WriteLine("Input the port number of the arduino.");
             string portNumber = Console.ReadLine();
