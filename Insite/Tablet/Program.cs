@@ -36,6 +36,7 @@ namespace Tablet
             {
                 Console.Write(port + ";");
             }
+            Console.WriteLine(); // So the next text will start on a new line
             Console.WriteLine("Input the port number of the arduino.");
             string portNumber = Console.ReadLine();
             controller = new ArduinoControllerMain("COM" + portNumber);

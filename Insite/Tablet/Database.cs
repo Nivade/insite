@@ -69,6 +69,7 @@ namespace Tablet
 
                     MySqlCommand command = new MySqlCommand(queryActivity, con);
                     command.ExecuteNonQuery();
+                    Console.WriteLine("Added data, {0}, {1}", roomId, userId);
                 }
             }
 
