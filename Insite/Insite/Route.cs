@@ -62,6 +62,7 @@ namespace Insite
             }
             if (userActivities.ToArray() != null)
             {
+                //throws npe if some of the entries have room.id == 0
                 lbInformation.Items.AddRange(userActivities.ToArray());
             }
         }
