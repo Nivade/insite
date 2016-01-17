@@ -254,14 +254,17 @@ namespace Insite
                 }
                 reader.Close();
 
-                
-                string queryActivity = string.Format("INSERT INTO activity (id_room, id_user, date) VALUES ({0}, {1}, '{2}')", 
-                    roomId, 
-                    userId,
-                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                //only add an entry when the room actually exists in the db
+                if (roomId != 0)
+                {
+                    string queryActivity = string.Format("INSERT INTO activity (id_room, id_user, date) VALUES ({0}, {1}, '{2}')",
+                        roomId,
+                        userId,
+                        DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
-                MySqlCommand command = new MySqlCommand(queryActivity, con);
-                command.ExecuteNonQuery();
+                    MySqlCommand command = new MySqlCommand(queryActivity, con);
+                    command.ExecuteNonQuery();
+                }
             }
 
         }
