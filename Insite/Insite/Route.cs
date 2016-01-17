@@ -45,24 +45,26 @@ namespace Insite
 
         private void ShowActivities()
         {
-            lbInformation.Items.Clear();
-
-            User selectedUser = (User)cbUsers.SelectedItem;
-
-            List<Activity> userActivities = new List<Activity>();
-            foreach (Activity a in Database.Activities)
+            if (cbUsers.SelectedItem != null)
             {
-                if (a.Device.Id == selectedUser.Device.Id)
-                {
-                    if (a.Date.Year == dtpDate.Value.Year &&
-                        a.Date.Month == dtpDate.Value.Month &&
-                        a.Date.Day == dtpDate.Value.Day &&
-                        a.Room != null)
-                        userActivities.Add(a);
-                }
-            }
-            lbInformation.Items.AddRange(userActivities.ToArray());
+                lbInformation.Items.Clear();
 
+                User selectedUser = (User)cbUsers.SelectedItem;
+
+                List<Activity> userActivities = new List<Activity>();
+                foreach (Activity a in Database.Activities)
+                {
+                    if (a.Device.Id == selectedUser.Device.Id)
+                    {
+                        if (a.Date.Year == dtpDate.Value.Year &&
+                            a.Date.Month == dtpDate.Value.Month &&
+                            a.Date.Day == dtpDate.Value.Day &&
+                            a.Room != null)
+                            userActivities.Add(a);
+                    }
+                }
+                lbInformation.Items.AddRange(userActivities.ToArray());
+            }
         }
 
         private void btnToday_Click(object sender, EventArgs e)
