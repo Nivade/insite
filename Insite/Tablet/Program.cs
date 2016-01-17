@@ -11,7 +11,6 @@ namespace Tablet
 {
     internal class Program
     {
-
         private static ArduinoControllerMain controller;
         private static string ssidtest;
         private static string Data;
@@ -63,7 +62,7 @@ namespace Tablet
 
             while (!quit)
             {
-
+                Thread.Sleep(5000);
                 //OnTimedEvent(null, null);
             }
         }
