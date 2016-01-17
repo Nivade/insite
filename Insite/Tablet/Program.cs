@@ -4,11 +4,10 @@ using NativeWifi;
 using System.Threading;
 using System.IO;
 using System.IO.Ports;
-using Insite;
 using System.Timers;
 
 
-namespace Insite
+namespace Tablet
 {
     internal class Program
     {
@@ -101,7 +100,7 @@ namespace Insite
                         string[] addressen = received.Split(';');
                         string ownMac = addressen[0];
                         string RoomMac = addressen[1];
-                        Console.WriteLine("ROOMMAC: " + RoomMac + " " + RoomMac.Length.ToString());
+                        
 
                         Database.AddDataToDB(ownMac, RoomMac);
 
