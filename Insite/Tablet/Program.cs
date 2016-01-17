@@ -37,7 +37,7 @@ namespace Insite
             {
                 Console.WriteLine(port);
             }
-            Console.WriteLine("Input the portnumber of the arduino.");
+            Console.WriteLine("Input the port number of the arduino.");
             string portNumber = Console.ReadLine();
             controller = new ArduinoControllerMain("COM" + portNumber);
             controller.SendData("RESET");

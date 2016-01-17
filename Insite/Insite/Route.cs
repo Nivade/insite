@@ -60,11 +60,13 @@ namespace Insite
                         userActivities.Add(a);
                 }
             }
-
-            lbInformation.Items.AddRange(userActivities.ToArray());
+            if (userActivities.ToArray() != null)
+            {
+                lbInformation.Items.AddRange(userActivities.ToArray());
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnToday_Click(object sender, EventArgs e)
         {
             dtpDate.Value = DateTime.Today;
         }
