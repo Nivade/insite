@@ -201,7 +201,6 @@ namespace Insite
                         }
                     }
                 }
-
                 return activities;
             }
         }

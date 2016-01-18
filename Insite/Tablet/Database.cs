@@ -69,12 +69,13 @@ namespace Tablet
 
                     MySqlCommand command = new MySqlCommand(queryActivity, con);
                     command.ExecuteNonQuery();
-                    Console.WriteLine("Added data: roomid:{0}, userid:{1}, datetime:{2}", roomId, userId, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    Console.WriteLine("Added data: roomid: {0}, userid: {1}, datetime: {2}", roomId, userId, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                } else
+                {
+                    Console.WriteLine("Did not add data. roomid: {0}, userid: {1}", roomId, userId);
                 }
             }
-
         }
-
     }
 }
 
