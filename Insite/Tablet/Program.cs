@@ -2,10 +2,8 @@
 using System.Text;
 using NativeWifi;
 using System.Threading;
-using System.IO;
 using System.IO.Ports;
 using System.Timers;
-
 
 namespace Tablet
 {
@@ -23,9 +21,6 @@ namespace Tablet
 
 
         private static WlanClient client = new WlanClient();
-        /*[STAThread]*/
-
-
 
         private static void Main(string[] args)
         {
