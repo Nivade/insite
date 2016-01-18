@@ -29,7 +29,6 @@ namespace Insite
         private static List<Notification> notifications;
         private static List<Room> rooms;
         private static List<Activity> activities;
-        private static List<Activity> realtimeactivities;
 
 
 
