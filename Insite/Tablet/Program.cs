@@ -21,6 +21,7 @@ namespace Tablet
         private static bool quit = false;
         private static string received;
 
+
         private static WlanClient client = new WlanClient();
         /*[STAThread]*/
 
@@ -59,7 +60,6 @@ namespace Tablet
             controller.SendData("id:" + ownMac);
             Thread.Sleep(5000);
             OnTimedEvent(null, null);
-
 
             while (!quit)
             {
@@ -106,6 +106,13 @@ namespace Tablet
 
                         received = null;
                     }
+                    if (received.StartsWith("HELP"))
+                    {
+                        received = received.Remove(0, 5);
+                        string ownMac = received;
+                        Database.AddNotification(ownMac);
+                        received = null;
+                    }
                 }
             }
 
@@ -120,7 +127,7 @@ namespace Tablet
 
                 Wlan.WlanBssEntry[] wlanBssEntries = wlanIface.GetNetworkBssList();
 
-                
+
                 foreach (Wlan.WlanBssEntry network in wlanBssEntries)
                 {
                     int rss = network.rssi;
