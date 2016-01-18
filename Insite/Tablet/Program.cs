@@ -63,7 +63,7 @@ namespace Tablet
 
             while (!quit)
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(1000);
             }
         }
 
@@ -106,7 +106,7 @@ namespace Tablet
 
                         received = null;
                     }
-                    if (received.StartsWith("HELP"))
+                    else if (received.StartsWith("HELP"))
                     {
                         received = received.Remove(0, 5);
                         string ownMac = received;
