@@ -29,6 +29,10 @@ namespace StrongestMacAddress
 
         private static void WifiDetection(WlanClient client, string ssid)
         {
+            foreach (WlanClient.WlanInterface interfacetoscan in client.Interfaces)
+            {
+                interfacetoscan.Scan();
+            }
             foreach (WlanClient.WlanInterface wlanIface in client.Interfaces)
             {
 
