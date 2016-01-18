@@ -57,7 +57,8 @@ namespace Tablet
             DataTimer.Elapsed += OnTimedEvent;
             DataTimer.Start();
             controller.SendData("id:" + ownMac);
-
+            Thread.Sleep(5000);
+            OnTimedEvent(null, null);
 
 
             while (!quit)
@@ -90,7 +91,7 @@ namespace Tablet
 
             if (received != null)
             {
-                //Console.WriteLine(received);
+                Console.WriteLine(received);
                 if (received.Contains(";"))
                 {
                     if (received.StartsWith("NETWORK:"))
