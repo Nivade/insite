@@ -180,6 +180,7 @@ namespace Insite
                 if (activities == null)
                     activities = new List<Activity>();
 
+                activities.Clear();
                 string sql = string.Format("SELECT * FROM {0}", Tables.Activity);
 
                 using (MySqlConnection con = new MySqlConnection(ConnectionString))

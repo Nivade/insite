@@ -28,8 +28,8 @@ namespace Insite
 
             refreshTimer = new Timer()
             {
-                Interval = 2000,
-                Enabled = true
+                Interval = 10000,
+                Enabled = false
             };
 
             refreshTimer.Tick += RefreshTimerOnTick;
@@ -91,28 +91,33 @@ namespace Insite
                     {
                         if (a.Date.Year == dtpDate.Value.Year && a.Date.Month == dtpDate.Value.Month && a.Date.Day == dtpDate.Value.Day && a.Room != null && a.User != null)
                         {
-                            if (!lbInformation.Items.Contains(a.ToString()))
-                                lbInformation.Items.Add(a.ToString());
+                            userActivities.Add(a);
                         }
                     }
                 }
 
                 userActivities.Reverse();
 
-                List<string> items = new List<string>();
-                foreach (Activity a in userActivities)
-                    items.Add(a.ToString());
-
-                lbInformation.Items.AddRange(items.ToArray());
+                lbInformation.Items.AddRange(userActivities.ToArray());
 
                 lbInformation.EndUpdate();
-                Console.WriteLine(userActivities.Count);
             }
         }
 
         private void btnToday_Click(object sender, EventArgs e)
         {
             dtpDate.Value = DateTime.Today;
+        }
+
+        private void checkBoxAutoUpdate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxAutoUpdate.Enabled)
+            {
+                refreshTimer.Start();
+            } else
+            {
+                refreshTimer.Stop();
+            }
         }
     }
 }
