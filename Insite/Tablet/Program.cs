@@ -13,7 +13,7 @@ namespace Tablet
     {
         private static ArduinoControllerMain controller;
         private static string ssidtest;
-        private static string Data;
+        private static string Data = "";
         private static int timerUpdateFrequency = 30000; // update database every 30 seconds
         private static int scanTimerFrequency = 10000; // scan for wifi networks every 10 seconds
         private static System.Threading.Timer scanner = new System.Threading.Timer(scanner_tick, null, 0, scanTimerFrequency);
@@ -100,7 +100,7 @@ namespace Tablet
                         string[] addressen = received.Split(';');
                         string ownMac = addressen[0];
                         string RoomMac = addressen[1];
-                        
+
 
                         Database.AddDataToDB(ownMac, RoomMac);
 
@@ -120,6 +120,7 @@ namespace Tablet
 
                 Wlan.WlanBssEntry[] wlanBssEntries = wlanIface.GetNetworkBssList();
 
+                
                 foreach (Wlan.WlanBssEntry network in wlanBssEntries)
                 {
                     int rss = network.rssi;
@@ -136,17 +137,19 @@ namespace Tablet
 
                     if (ssidtest == SSID)
                     {
-
-                        Data += network.linkQuality;
-                        Data += ";";
-                        Data += tMac;
-                        Data += ";";
+                        if (Data.Length < 170)
+                        {
+                            Data += network.linkQuality;
+                            Data += ";";
+                            Data += tMac;
+                            Data += ";";
+                        }
                     }
                 }
             }
             //Console.WriteLine(Data);
             controller.SendData(Data);
-            Data = null;
+            Data = "";
         }
 
     }
