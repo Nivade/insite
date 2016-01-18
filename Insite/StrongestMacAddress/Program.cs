@@ -15,6 +15,7 @@ namespace StrongestMacAddress
             Console.WriteLine("Input ssid:");
             string ssid = Console.ReadLine();
             int length = ssid.Length;
+            // This is for the comparison between ssids. The ssid length is always 32, so this one also has to be that long.
             for (int i = 0; i < (32 - length); i++)
             {
                 ssid += '\0';
