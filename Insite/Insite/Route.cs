@@ -60,7 +60,8 @@ namespace Insite
                         if (a.Date.Year == dtpDate.Value.Year &&
                             a.Date.Month == dtpDate.Value.Month &&
                             a.Date.Day == dtpDate.Value.Day &&
-                            a.Room != null)
+                            a.Room != null &&
+                            a.User != null)
                             userActivities.Add(a);
                     }
                 }
