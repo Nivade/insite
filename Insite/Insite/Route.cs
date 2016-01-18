@@ -52,9 +52,10 @@ namespace Insite
                 User selectedUser = (User)cbUsers.SelectedItem;
 
                 List<Activity> userActivities = new List<Activity>();
+
                 foreach (Activity a in Database.Activities)
                 {
-                    if (a.Device.Id == selectedUser.Device.Id)
+                    if (a.User.Id == selectedUser.Id)
                     {
                         if (a.Date.Year == dtpDate.Value.Year &&
                             a.Date.Month == dtpDate.Value.Month &&

@@ -22,11 +22,11 @@ namespace Insite
         public Room Room { get; private set; }
 
 
-        /// <summary>
-        /// The device of this activity.
-        /// </summary>
-        public Device Device { get; private set; }
 
+        /// <summary>
+        /// The user of this activity.
+        /// </summary>
+        public User User { get; private set; }
 
         /// <summary>
         /// The date this activity is recorded.
@@ -35,14 +35,14 @@ namespace Insite
 
 
 
-        public Activity(int id, int idRoom, int idDevice, DateTime date)
+        public Activity(int id, int idRoom, int idUser, DateTime date)
         {
             // Find the device that matches the given id.
-            foreach (Device d in Database.Devices)
+            foreach (User u in Database.Users)
             {
-                if (d.Id == idDevice)
+                if (u.Id == idUser)
                 {
-                    Device = d;
+                    User = u;
                     break;
                 }
             }

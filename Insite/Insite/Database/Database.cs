@@ -164,7 +164,6 @@ namespace Insite
                         }
                     }
                 }
-
                 return rooms;
             }
         }
