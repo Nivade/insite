@@ -64,7 +64,6 @@ namespace Tablet
             while (!quit)
             {
                 Thread.Sleep(5000);
-                //OnTimedEvent(null, null);
             }
         }
 
