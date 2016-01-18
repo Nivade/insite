@@ -178,27 +178,26 @@ namespace Insite
             get
             {
                 if (activities == null)
-                {
                     activities = new List<Activity>();
 
-                    string sql = string.Format("SELECT * FROM {0}", Tables.Activity);
+                string sql = string.Format("SELECT * FROM {0}", Tables.Activity);
 
-                    using (MySqlConnection con = new MySqlConnection(ConnectionString))
+                using (MySqlConnection con = new MySqlConnection(ConnectionString))
+                {
+                    con.Open();
+
+                    MySqlDataReader rows = GetMySqlDataReader(sql, con);
+
+                    while (rows.Read())
                     {
-                        con.Open();
-
-                        MySqlDataReader rows = GetMySqlDataReader(sql, con);
-
-                        while (rows.Read())
-                        {
-                            activities?.Add(new Activity(
-                                    Convert.ToInt32(rows[0]),
-                                    Convert.ToInt32(rows[1]),
-                                    Convert.ToInt32(rows[2]),
-                                    DateTime.Parse(Convert.ToString(rows[3]))));
-                        }
+                        activities?.Add(new Activity(
+                                Convert.ToInt32(rows[0]),
+                                Convert.ToInt32(rows[1]),
+                                Convert.ToInt32(rows[2]),
+                                DateTime.Parse(Convert.ToString(rows[3]))));
                     }
                 }
+
                 return activities;
             }
         }

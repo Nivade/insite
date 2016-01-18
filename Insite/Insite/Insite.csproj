@@ -60,6 +60,7 @@
     <Compile Include="Database\Database.cs" />
     <Compile Include="Data\Device.cs" />
     <Compile Include="Data\Route.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Insite.cs">
       <SubType>Form</SubType>
     </Compile>

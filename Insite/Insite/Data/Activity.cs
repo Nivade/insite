@@ -70,7 +70,7 @@ namespace Insite
         public override string ToString()
         {
 
-            return Room.Name + " ---- " + Date.TimeOfDay;
+            return Date.TimeOfDay + " ---- " + Room.Name;
         }
 
     }
