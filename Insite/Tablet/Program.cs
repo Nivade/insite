@@ -14,8 +14,8 @@ namespace Tablet
         private static ArduinoControllerMain controller;
         private static string ssidtest;
         private static string Data = "";
-        private static int timerUpdateFrequency = 30000; // update database every 30 seconds
-        private static int scanTimerFrequency = 10000; // scan for wifi networks every 10 seconds
+        private static int timerUpdateFrequency = 10000; // update database every x seconds
+        private static int scanTimerFrequency = 10000; // scan for wifi networks every x seconds
         private static System.Threading.Timer scanner = new System.Threading.Timer(scanner_tick, null, 0, scanTimerFrequency);
         private static System.Timers.Timer DataTimer = new System.Timers.Timer(timerUpdateFrequency);
         private static bool quit = false;
