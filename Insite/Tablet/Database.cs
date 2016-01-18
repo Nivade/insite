@@ -41,7 +41,7 @@ namespace Tablet
 
 
                 // Retrieve the User ID matching the given mac address.
-                string querydeviceid = string.Format("SELECT id FROM user WHERE mac IN (SELECT id FROM device WHERE mac = '{0}'", ownMac);
+                string querydeviceid = string.Format("SELECT id FROM user WHERE id IN (SELECT user.id FROM user, device WHERE user.id_device = device.id AND mac = '{0}')", ownMac);
                 reader = GetMySqlDataReader(querydeviceid, con);
                 while (reader.Read())
                 {
