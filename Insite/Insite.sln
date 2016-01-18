@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insite", "Insite\Insite.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tablet", "Tablet\Tablet.csproj", "{D625927F-D6D0-4A47-8615-3BA0258749D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongestMacAddress", "StrongestMacAddress\StrongestMacAddress.csproj", "{39C49706-061C-4B8B-A2F7-0284B94CD72C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{D625927F-D6D0-4A47-8615-3BA0258749D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D625927F-D6D0-4A47-8615-3BA0258749D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D625927F-D6D0-4A47-8615-3BA0258749D6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{39C49706-061C-4B8B-A2F7-0284B94CD72C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39C49706-061C-4B8B-A2F7-0284B94CD72C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39C49706-061C-4B8B-A2F7-0284B94CD72C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39C49706-061C-4B8B-A2F7-0284B94CD72C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
