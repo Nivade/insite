@@ -84,7 +84,7 @@ namespace Tablet
                 con.Open();
                 int activityId = 0;
                 MySqlDataReader reader;
-                string queryActivityid = string.Format("SELECT max(id) FROM activity WHERE id_user IN ( SELECT id FROM user WHERE MAC ='{0}'", ownMac );
+                string queryActivityid = string.Format("SELECT max(id) FROM activity WHERE id_user IN (SELECT user.id FROM user, device WHERE device.mac ='{0}' AND user.id_device = device.id)", ownMac );
                 reader = GetMySqlDataReader(queryActivityid, con);
                 while (reader.Read())
                 {
@@ -92,8 +92,7 @@ namespace Tablet
                 }
                 reader.Close();
 
-                string queryNotification = string.Format("INSERT INTO notification (id_activity, type) VALUES ({0}, '{1}')",activityId, "Panic Button");
-
+                string queryNotification = string.Format("INSERT INTO notification (id_activity, type) VALUES ({0}, '{1}')", activityId, "Panic Button");
                 MySqlCommand command = new MySqlCommand(queryNotification, con);
                 command.ExecuteNonQuery();
             }

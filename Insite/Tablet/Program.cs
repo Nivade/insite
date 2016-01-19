@@ -83,7 +83,7 @@ namespace Tablet
 
             if (received != null)
             {
-                Console.WriteLine(received);
+                //Console.WriteLine(received);
                 if (received.Contains(";"))
                 {
                     if (received.StartsWith("NETWORK:"))
