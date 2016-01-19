@@ -62,8 +62,6 @@ namespace Tablet
             }
         }
 
-
-
         private static void scanner_tick(object state)
         {
             foreach (WlanClient.WlanInterface interfacetoscan in client.Interfaces)

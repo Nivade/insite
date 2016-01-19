@@ -81,7 +81,7 @@ namespace Tablet
         {
             using (MySqlConnection con = new MySqlConnection(ConnectionString))
             {
-
+                con.Open();
                 int activityId = 0;
                 MySqlDataReader reader;
                 string queryActivityid = string.Format("SELECT max(id) FROM activity WHERE id_user IN ( SELECT id FROM user WHERE MAC ='{0}'", ownMac );
