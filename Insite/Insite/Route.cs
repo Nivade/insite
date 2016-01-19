@@ -111,7 +111,7 @@ namespace Insite
 
         private void checkBoxAutoUpdate_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxAutoUpdate.Checked)
+            if (checkBoxAutoUpdate.Checked == true)
             {
                 refreshTimer.Start();
             } else
