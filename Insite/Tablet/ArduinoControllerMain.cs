@@ -60,19 +60,24 @@ namespace Tablet
 
         public string ReceivedData()
         {
-            if (buffer != null)
+            if (buffer != null && buffer != "")
             {
+                //Console.WriteLine(buffer);
                 if (buffer.StartsWith("#") && buffer.IndexOf("%") > 0)
                 {
 
                     buffer = buffer.Remove(0, 1);
-                    buffer = buffer.Remove(buffer.IndexOf('%'));
-                    string tmpbuffer = buffer;
-                    buffer = "";
+                    String[]  abuffer;
+                    abuffer = new string[2];
+                    abuffer[0] = buffer.Substring(0, buffer.IndexOf('%'));
+                    buffer = buffer.Remove(0, abuffer[0].Length + 1); //also remove the % token
+                    abuffer[1] = buffer;
+                    string tmpbuffer = abuffer[0];
+                    buffer = abuffer[1];
 
                     return tmpbuffer;
                 }
-                if (!buffer.StartsWith("#") && buffer != "")
+                if (!buffer.StartsWith("#") && buffer != "" && buffer != null)
                 {
                     buffer = buffer.Remove(0, 1);
                 }

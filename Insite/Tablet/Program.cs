@@ -74,6 +74,7 @@ namespace Tablet
 
         private static void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
+            
             WifiDetection(client);
 
             while (received == null)
@@ -99,11 +100,13 @@ namespace Tablet
 
                         received = null;
                     }
-                    else if (received.StartsWith("HELP"))
+                    else if (received.StartsWith("HELP;"))
                     {
+                        
                         received = received.Remove(0, 5);
                         string ownMac = received;
                         Database.AddNotification(ownMac);
+                        Console.WriteLine("Panic button pressed!");
                         received = null;
                     }
                 }
