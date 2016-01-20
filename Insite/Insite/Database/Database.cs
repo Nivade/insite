@@ -1,36 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using MySql.Data.MySqlClient;
 
 
 namespace Insite
 {
+
     public static class Database
     {
-        /// <summary>
-        /// A gift to hackers.
-        /// </summary>
-        private const string ConnectionString = "Server=77.170.173.162;Uid=test;Pwd=passwordtest!;Database=ptdb;";
-
-        /// <summary>
-        /// String constants for table names.
-        /// </summary>
-        private class Tables
-        {
-            public const string User = "user";
-            public const string Activity = "activity";
-            public const string Device = "device";
-            public const string Notification = "notification";
-            public const string Room = "room";
-        }
-
-        private static List<User> users;
-        private static List<Device> devices;
-        private static List<Notification> notifications;
-        private static List<Room> rooms;
-        private static List<Activity> activities;
-
-
 
         /// <summary>
         /// Fills and returns a list with Users.
@@ -43,7 +21,7 @@ namespace Insite
                 {
                     users = new List<User>();
 
-                    string sql = string.Format("SELECT * FROM {0}", Tables.User);
+                    string sql = $"SELECT * FROM {Tables.User}";
 
                     using (MySqlConnection con = new MySqlConnection(ConnectionString))
                     {
@@ -52,13 +30,7 @@ namespace Insite
                         MySqlDataReader rows = GetMySqlDataReader(sql, con);
 
                         while (rows.Read())
-                        {
-                            users?.Add(new User(
-                                    Convert.ToInt32(rows[0]),
-                                    Convert.ToString(rows[1]),
-                                    Convert.ToInt32(rows[2]),
-                                    Convert.ToInt32(rows[3])));
-                        }
+                            users?.Add(new User(Convert.ToInt32(rows[0]), Convert.ToString(rows[1]), Convert.ToInt32(rows[2]), Convert.ToInt32(rows[3])));
                     }
                 }
 
@@ -78,7 +50,7 @@ namespace Insite
                 {
                     devices = new List<Device>();
 
-                    string sql = string.Format("SELECT * FROM {0}", Tables.Device);
+                    string sql = $"SELECT * FROM {Tables.Device}";
 
                     using (MySqlConnection con = new MySqlConnection(ConnectionString))
                     {
@@ -87,18 +59,13 @@ namespace Insite
                         MySqlDataReader rows = GetMySqlDataReader(sql, con);
 
                         while (rows.Read())
-                        {
-                            devices?.Add(new Device(
-                                    Convert.ToInt32(rows[0]),
-                                    Convert.ToString(rows[1])));
-                        }
+                            devices?.Add(new Device(Convert.ToInt32(rows[0]), Convert.ToString(rows[1])));
                     }
                 }
 
                 return devices;
             }
         }
-
 
 
         /// <summary>
@@ -112,7 +79,7 @@ namespace Insite
                 {
                     notifications = new List<Notification>();
 
-                    string sql = string.Format("SELECT * FROM {0}", Tables.Notification);
+                    string sql = $"SELECT * FROM {Tables.Notification}";
 
                     using (MySqlConnection con = new MySqlConnection(ConnectionString))
                     {
@@ -121,12 +88,7 @@ namespace Insite
                         MySqlDataReader rows = GetMySqlDataReader(sql, con);
 
                         while (rows.Read())
-                        {
-                            notifications?.Add(new Notification(
-                                    Convert.ToInt32(rows[0]),
-                                    Convert.ToInt32(rows[1]),
-                                    Convert.ToString(rows[2])));
-                        }
+                            notifications?.Add(new Notification(Convert.ToInt32(rows[0]), Convert.ToInt32(rows[1]), Convert.ToString(rows[2])));
                     }
                 }
 
@@ -146,7 +108,7 @@ namespace Insite
                 {
                     rooms = new List<Room>();
 
-                    string sql = string.Format("SELECT * FROM {0}", Tables.Room);
+                    string sql = $"SELECT * FROM {Tables.Room}";
 
                     using (MySqlConnection con = new MySqlConnection(ConnectionString))
                     {
@@ -155,19 +117,12 @@ namespace Insite
                         MySqlDataReader rows = GetMySqlDataReader(sql, con);
 
                         while (rows.Read())
-                        {
-                            rooms?.Add(new Room(
-                                    Convert.ToInt32(rows[0]),
-                                    Convert.ToString(rows[1]),
-                                    Convert.ToString(rows[2]),
-                                    Convert.ToString(rows[3])));
-                        }
+                            rooms?.Add(new Room(Convert.ToInt32(rows[0]), Convert.ToString(rows[1]), Convert.ToString(rows[2]), Convert.ToString(rows[3])));
                     }
                 }
                 return rooms;
             }
         }
-
 
 
         /// <summary>
@@ -181,7 +136,8 @@ namespace Insite
                     activities = new List<Activity>();
 
                 activities.Clear();
-                string sql = string.Format("SELECT * FROM {0}", Tables.Activity);
+
+                string sql = $"SELECT * FROM {Tables.Activity}";
 
                 using (MySqlConnection con = new MySqlConnection(ConnectionString))
                 {
@@ -190,18 +146,26 @@ namespace Insite
                     MySqlDataReader rows = GetMySqlDataReader(sql, con);
 
                     while (rows.Read())
-                    {
-                        activities?.Add(new Activity(
-                                Convert.ToInt32(rows[0]),
-                                Convert.ToInt32(rows[1]),
-                                Convert.ToInt32(rows[2]),
-                                DateTime.Parse(Convert.ToString(rows[3]))));
-                    }
+                        activities?.Add(new Activity(Convert.ToInt32(rows[0]), Convert.ToInt32(rows[1]), Convert.ToInt32(rows[2]), DateTime.Parse(Convert.ToString(rows[3]))));
                 }
 
                 return activities;
             }
         }
+
+
+        /// <summary>
+        /// A gift to hackers.
+        /// </summary>
+        private const string ConnectionString = "Server=77.170.173.162;Uid=test;Pwd=passwordtest!;Database=ptdb;";
+
+
+        private static List<User> users;
+        private static List<Device> devices;
+        private static List<Notification> notifications;
+        private static List<Room> rooms;
+        private static List<Activity> activities;
+
 
 
         /// <summary>
@@ -214,11 +178,30 @@ namespace Insite
         {
             MySqlCommand cmd = new MySqlCommand(query, con)
             {
-                CommandType = System.Data.CommandType.Text
+                CommandType = CommandType.Text
             };
 
             return cmd.ExecuteReader();
         }
-    }
-}
 
+
+        #region Nested type: Tables
+
+        /// <summary>
+        /// String constants for table names.
+        /// </summary>
+        private class Tables
+        {
+
+            public const string User = "user";
+            public const string Activity = "activity";
+            public const string Device = "device";
+            public const string Notification = "notification";
+            public const string Room = "room";
+
+        }
+
+        #endregion
+    }
+
+}
