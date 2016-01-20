@@ -1,32 +1,26 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
-using Timer = System.Windows.Forms.Timer;
 
 
 namespace Insite
 {
+
     public partial class Route : MaterialForm
     {
 
+        private readonly Timer refreshTimer;
+
         private List<Activity> userActivities = new List<Activity>();
-        private Timer refreshTimer;
+
+
 
         public Route()
         {
             InitializeComponent();
 
-            refreshTimer = new Timer()
+            refreshTimer = new Timer
             {
                 Interval = 10000,
                 Enabled = false
@@ -51,16 +45,14 @@ namespace Insite
         public void FillComboBox()
         {
             foreach (User u in Database.Users)
-            {
                 cbUsers.Items.Add(u);
-            }
         }
+
+
 
         private void UserSelected(object sender, EventArgs e)
         {
-
             ShowActivitiesMethod();
-
         }
 
 
@@ -69,7 +61,6 @@ namespace Insite
         {
             ShowActivitiesMethod();
         }
-
 
 
 
@@ -83,16 +74,14 @@ namespace Insite
 
                 lbInformation.Items.Clear();
 
-                User selectedUser = (User)cbUsers.SelectedItem;
+                User selectedUser = (User) cbUsers.SelectedItem;
 
                 foreach (Activity a in Database.Activities)
                 {
                     if (a.User.Id == selectedUser.Id)
                     {
                         if (a.Date.Year == dtpDate.Value.Year && a.Date.Month == dtpDate.Value.Month && a.Date.Day == dtpDate.Value.Day && a.Room != null && a.User != null)
-                        {
                             userActivities.Add(a);
-                        }
                     }
                 }
 
@@ -104,20 +93,23 @@ namespace Insite
             }
         }
 
+
+
         private void btnToday_Click(object sender, EventArgs e)
         {
             dtpDate.Value = DateTime.Today;
         }
 
+
+
         private void checkBoxAutoUpdate_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxAutoUpdate.Checked == true)
-            {
+            if (checkBoxAutoUpdate.Checked)
                 refreshTimer.Start();
-            } else
-            {
+            else
                 refreshTimer.Stop();
-            }
         }
+
     }
+
 }
